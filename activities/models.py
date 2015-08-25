@@ -86,6 +86,10 @@ class Activity(models.Model):
                 self.start_date >= self.end_date:
             raise ValidationError(_('Start date cannot be after end date.'))
 
+    def __str__(self):
+        return '%s (%s %s)' % (self.title, self.start_date.month,
+            self.start_date.year)
+
 
 class Parameter(models.Model):
     """Parameter of an activity.
@@ -156,6 +160,9 @@ class Parameter(models.Model):
         if self.activity is None and self.parent_parameter is None:
             raise ValidationError(_('Parent parameter or activity has to be set.'))
 
+    def __str__(self):
+        return '%s' % (self.name)
+
 
 class Item(models.Model):
     """Item of a parameter.
@@ -199,6 +206,9 @@ class Item(models.Model):
         verbose_name = _('item')
         verbose_name_plural = _('items')
         ordering = ['name']
+
+    def __str__(self):
+        return '%s' % (self.name)
 
 
 class Participant(models.Model):
@@ -277,3 +287,7 @@ class Participant(models.Model):
                 count() >= self.item.parameter.max_bought_items:
             raise ValidationError(_('Maximum number of bought items is reached \
                                     for this parameter.'))
+
+    def __str__(self):
+        return '%s (%s)' % (self.unregistered_user if not self.unregistered_user\
+            else self.registered_user.user.get_full_name(), self.item.name)

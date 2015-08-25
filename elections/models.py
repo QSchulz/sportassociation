@@ -44,6 +44,9 @@ class Election(models.Model):
         if self.start_date >= self.end_date:
             raise ValidationError(_('Start date cannot be after end date.'))
 
+    def __str__(self):
+        return '%s' % (self.title)
+
 
 class VacantPosition(models.Model):
     """Vacant position of an election.
@@ -80,6 +83,9 @@ class VacantPosition(models.Model):
         verbose_name = _('vacant position')
         verbose_name_plural = _('vacant positions')
 
+    def __str__(self):
+        return '%s (%s)' % (self.position.title, self.election.title)
+
     # TODO: validate staying_staff in forms
     # http://stackoverflow.com/a/28901357
 
@@ -105,6 +111,10 @@ class Candidature(models.Model):
     class Meta:
         verbose_name = _('candidature')
         verbose_name_plural = _('candidatures')
+
+    def __str__(self):
+        return '%s (%s)' % (self.candidate.user.get_full_name(),
+            str(self.vacant_position))
 
 
 class Vote(models.Model):
@@ -143,3 +153,7 @@ class Vote(models.Model):
                 filter(candidature__vacant_position__candidatures__votes__voter=\
                 self.voter).exists():
             raise ValidationError(_('The user already voted for this position.'))
+
+    def __str__(self):
+        return '%s vote %s' % (self.voter.user.get_full_name(),
+            self.candidature.candidate.user.get_full_name())

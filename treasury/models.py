@@ -84,6 +84,8 @@ class FinancialOperation(models.Model):
         if self.unregistered_user is not None and self.registered_user is not None:
             raise ValidationError(_('Either unregistered user or registered user \
                                     can be set.'))
+    def __str__(self):
+        return '%s' % (self.name)
 
 
 class CashRegister(models.Model):
@@ -114,6 +116,9 @@ class CashRegister(models.Model):
         verbose_name = _('cash register')
         verbose_name_plural = _('cash registers')
         ordering = ['creation_date']
+
+    def __str__(self):
+        return '%s' % (self.name)
 
 
 class TreasuryOperation(models.Model):
@@ -156,3 +161,6 @@ class TreasuryOperation(models.Model):
         verbose_name = _('treasury operation')
         verbose_name_plural = _('treasury operations')
         ordering = ['-creation_date']
+
+    def __str__(self):
+        return '%s (%s)' % (self.name, str(self.creation_date))

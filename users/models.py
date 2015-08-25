@@ -163,3 +163,6 @@ class CustomUser(models.Model):
 
     def is_manager(self):
         return self.managed_sports.exists()
+
+    def __str__(self):
+        return '%s (%s)' % (self.user.get_full_name(), self.id)

@@ -145,6 +145,9 @@ class Location(models.Model):
             raise ValidationError(_('Missing address and city or latitude and \
                                     longitude'))
 
+    def __str__(self):
+        return '%s' % (self.name)
+
 
 class Permanence(models.Model):
     """Model representing a permanence.
@@ -191,6 +194,10 @@ class Permanence(models.Model):
         if self.start_time >= self.end_time:
             raise ValidationError(_('Start time cannot be after end time.'))
 
+    def __str__(self):
+        return (str(self.date) if self.weekday is None else \
+            self.get_weekday_display())
+
 
 class Equipment(models.Model):
     """Model representing an equipment.
@@ -215,6 +222,9 @@ class Equipment(models.Model):
         verbose_name = _('equipment')
         verbose_name_plural = _('equipments')
         ordering = ['name']
+
+    def __str__(self):
+        return '%s' % (self.name)
 
 
 class Lending(models.Model):
@@ -268,6 +278,10 @@ class Lending(models.Model):
             raise ValidationError(_('Lending impossible, not enough equipment \
                                     in stock.'))
 
+    def __str__(self):
+        return '%s (%s)' % (self.borrower.user.get_full_name(),
+            str(self.equipment))
+
 
 class Position(models.Model):
     """Model representing a position in the association (~ staff).
@@ -288,6 +302,9 @@ class Position(models.Model):
     class Meta:
         verbose_name = _('position')
         verbose_name_plural = _('positions')
+
+    def __str__(self):
+        return '%s' % (self.title)
 
 
 class MembershipType(models.Model):
@@ -328,6 +345,10 @@ class MembershipType(models.Model):
         verbose_name = _('membership type')
         verbose_name_plural = _('membership types')
         ordering = ['semester_fee']
+
+    def __str__(self):
+        return '%s (%s)' % (self.title, 'Active' if self.is_active else \
+            'Inactive')
 
 
 class Membership(models.Model):
@@ -394,6 +415,10 @@ class Membership(models.Model):
                 DELTA_CERTIFICATE_VALIDITY) <= self.expiration_date:
              raise ValidationError(_('Certificate will expire before the \
                                     membership.'))
+
+    def __str__(self):
+        return '%s (%s %s)' % (self.member.user.get_full_name(),
+            self.creation_date.month, self.creation_date.year)
 
 # TODO: Migrate to generic many-to-many relation?
 # http://stackoverflow.com/questions/933092/generic-many-to-many-relationships

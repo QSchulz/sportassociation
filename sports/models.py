@@ -52,6 +52,9 @@ class Sport(models.Model):
         verbose_name_plural = _('sports')
         ordering = ['name']
 
+    def __str__(self):
+        return '%s' % (self.name)
+
     # TODO: Validate manager is a member in forms
 
 
@@ -94,6 +97,9 @@ class Match(models.Model):
         verbose_name = _('match')
         verbose_name_plural = _('matches')
         ordering = ['-date']
+
+    def __str__(self):
+        return '%s (%s)' % (self.name, str(self.date))
 
 
 class Session(models.Model):
@@ -156,6 +162,10 @@ class Session(models.Model):
                                     manage sessions of this sport.' % \
                                     (self.manager.user.get_full_name())))
 
+    def __str__(self):
+        return '%s (%s)' % (self.sport.name, str(self.date) if self.weekday is \
+            None else self.get_weekday_display())
+
 
 class CancelledSession(models.Model):
     """Cancelled session associated to session.
@@ -197,3 +207,7 @@ class CancelledSession(models.Model):
         if self.cancelled_session.weekday is None and\
                 self.cancellation_date != self.cancelled_session.date:
             raise ValidationError(_('Dates are not matching.'))
+
+    def __str__(self):
+        return '%s (%s)' % (self.cancelled_session.sport,
+            str(self.cancellation_date))

@@ -46,6 +46,9 @@ class Weekmail(models.Model):
         verbose_name_plural = _('weekmails')
         ordering = ['-sent_date']
 
+    def __str__(self):
+        return '%s' % (self.subject)
+
 
 class Paragraph(models.Model):
     """Paragraph of a weekmail.
@@ -77,6 +80,9 @@ class Paragraph(models.Model):
         verbose_name = _('paragraph')
         verbose_name_plural = _('paragraphs')
         ordering = ['index']
+
+    def __str__(self):
+        return '%s (%s)' % (self.title, self.weekmail.subject)
 
     # TODO: Guarantee uniqueness of index in a weekmail
     # Comment (@qschulz): using InlineSortable in Admin does the trick with JS
@@ -131,6 +137,9 @@ class Article(models.Model):
         verbose_name_plural = _('articles')
         ordering = ['-publication_date']
 
+    def __str__(self):
+        return '%s' % (self.title)
+
 
 class Information(models.Model):
     """Model representing an information.
@@ -174,3 +183,6 @@ class Information(models.Model):
             raise ValidationError(_('Start date cannot be after end date.'))
         if not self.title and not self.content:
             raise ValidationError(_('At least title or content should be set.'))
+
+    def __str__(self):
+        return '%s' % (self.title)
