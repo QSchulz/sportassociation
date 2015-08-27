@@ -15,6 +15,7 @@ class ProtectedImageInline(GenericTabularInline):
 
 @admin.register(Activity)
 class ActivityAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
     inlines = [ AdminFileInline, ProtectedFileInline, ProtectedImageInline, ]
 
 class ParameterInline(admin.StackedInline):

@@ -15,5 +15,8 @@ class PublicFileInline(GenericTabularInline):
 class WeekmailAdmin(admin.ModelAdmin):
     inlines = [ParagraphSortable, PublicFileInline,]
 
-admin.site.register(Article)
+@admin.register(Article)
+class ArticleAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
 admin.site.register(Information)
