@@ -1,22 +1,13 @@
 from django.contrib import admin
-from sorl.thumbnail.admin import AdminImageMixin
+#from sorl.thumbnail.admin import AdminImageMixin
 from .models import (Activity, Parameter, Item, Participant)
-from django.contrib.contenttypes.admin import GenericTabularInline
-from management.models import (AdminFile, ProtectedFile, ProtectedImage)
-
-class AdminFileInline(GenericTabularInline):
-    model = AdminFile
-
-class ProtectedFileInline(GenericTabularInline):
-    model = ProtectedFile
-
-class ProtectedImageInline(GenericTabularInline):
-    model = ProtectedImage
+from management.admin import (AdminFileInline, ProtectedFileInline,
+                                ProtectedImageInline)
 
 @admin.register(Activity)
 class ActivityAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
-    inlines = [ AdminFileInline, ProtectedFileInline, ProtectedImageInline, ]
+    inlines = [AdminFileInline, ProtectedFileInline, ProtectedImageInline,]
 
 class ParameterInline(admin.StackedInline):
     model = Parameter
