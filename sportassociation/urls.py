@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+
 from . import settings
+from users.views import AdminUserCreateView
 
 urlpatterns = [
+    #Comment the next line if you want to create users with random passwords.
+    url(r'^admin/auth/user/add/', AdminUserCreateView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
 ]
 

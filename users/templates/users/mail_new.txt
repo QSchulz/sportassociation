@@ -1,0 +1,13 @@
+Hi {{ first_name }},
+
+Welcome to BDS.
+Here are your credentials:
+  - {{ username }}
+  - {{ password }}
+
+We strongly recommend you to change this password as soon as your first login.
+
+Cheers,
+
+Bureau Des Sports UTBM
+http://bds.utbm.fr

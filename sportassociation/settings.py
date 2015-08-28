@@ -34,9 +34,14 @@ from .localsettings import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+#Do not send emails while in DEBUG mode, write in the console.
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Application definition
 
 INSTALLED_APPS = (
+    'bootstrap3',
     'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',

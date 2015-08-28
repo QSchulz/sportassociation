@@ -1,0 +1,20 @@
+{% load bootstrap3 %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# TODO: Extends admin base skin #}
+<div class="row">
+  <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+    <form action="" method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {% bootstrap_form_errors form layout='table' %}
+        {% bootstrap_form form layout='table' %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">
+                {% bootstrap_icon "ok" %} Submit
+            </button>
+        {% endbuttons %}
+    </form>
+  </div>
+</div>
