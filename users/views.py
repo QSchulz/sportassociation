@@ -64,4 +64,4 @@ class AdminUserCreateView(View):
 
     @method_decorator(permission_required('add_user'))
     def dispatch(self, *args, **kwargs):
-        return super(AdminUserUpdateView, self).dispatch(*args, **kwargs)
+        return super(AdminUserCreateView, self).dispatch(*args, **kwargs)
