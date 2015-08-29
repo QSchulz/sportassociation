@@ -442,7 +442,7 @@ class PublicFile(models.Model):
     def custom_path(instance, filename):
         directory = 'files/'
         if str(instance.content_type) == "weekmail":
-            directory = 'weekmail/%s/%s' % (instance.object_id, filename)
+            directory = 'weekmail/%s/' % (instance.object_id)
         return 'public/%s%s' % (directory, filename)
 
     creation_date = models.DateTimeField(auto_now_add=True)
