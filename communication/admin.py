@@ -39,8 +39,17 @@ class WeekmailAdmin(admin.ModelAdmin):
     send.short_description = _("Send selected weekmails")
     display.short_description = _("Display selected weekmails")
 
+    class Media:
+        js = ('tinymce/tinymce.min.js', 'js/tinymce_4_config.js')
+
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
-admin.site.register(Information)
+    class Media:
+        js = ('tinymce/tinymce.min.js', 'js/tinymce_4_config.js')
+
+@admin.register(Information)
+class InformationAdmin(admin.ModelAdmin):
+    class Media:
+        js = ('tinymce/tinymce.min.js', 'js/tinymce_4_config.js')

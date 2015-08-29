@@ -22,12 +22,21 @@ class PublicFileInline(GenericTabularInline):
 class PublicImageInline(GenericTabularInline):
     model = PublicImage
 
+@admin.register(MembershipType)
+class MembershipTypeAdmin(admin.ModelAdmin):
+
+    class Media:
+        js = ('tinymce/tinymce.min.js', 'js/tinymce_4_config.js')
+
+@admin.register(Position)
+class PositionAdmin(admin.ModelAdmin):
+    class Media:
+        js = ('tinymce/tinymce.min.js', 'js/tinymce_4_config.js')
+
 admin.site.register(Location)
 admin.site.register(Permanence)
 admin.site.register(Equipment)
 admin.site.register(Lending)
-admin.site.register(Position)
-admin.site.register(MembershipType)
 admin.site.register(Membership)
 admin.site.register(PublicFile)
 admin.site.register(PublicImage)
