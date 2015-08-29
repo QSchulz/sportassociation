@@ -11,6 +11,7 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from smtplib import SMTPException
 from sportassociation import settings
+import html.parser
 
 
 class Weekmail(models.Model):
@@ -56,7 +57,8 @@ class Weekmail(models.Model):
 
     def send(self):
         #Create the weekmail content and send it.
-        content = {'weekmail': self}
+        html_parser = html.parser.HTMLParser()
+        content = {'weekmail': html_parser.unescape(self)}
         mail_content_txt = render_to_string('communication/weekmail.txt',
                                             content)
         mail_content_html = render_to_string('communication/weekmail.html',
@@ -74,7 +76,6 @@ class Weekmail(models.Model):
             mail.cc = [sender,]
             mail.attach_alternative(mail_content_html, "text/html")
             for attachment in self.attached.all():
-                print(attachment.file.path)
                 mail.attach_file(attachment.file.path)
             mail.send()
             self.sent_date = timezone.now()

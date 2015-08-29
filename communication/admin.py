@@ -1,18 +1,15 @@
 from django.contrib import admin
-from django.contrib.contenttypes.admin import GenericTabularInline
 from django_admin_bootstrapped.admin.models import SortableInline
 from .models import (Weekmail, Paragraph, Article, Information)
-from management.models import PublicFile
+from management.admin import PublicFileInline
 from django.utils.translation import ugettext as _
 from django.template.loader import render_to_string
 from django.http import HttpResponse
+import html.parser
 
 class ParagraphSortable( SortableInline, admin.StackedInline):
     model = Paragraph
     extra = 0
-
-class PublicFileInline(GenericTabularInline):
-    model = PublicFile
 
 @admin.register(Weekmail)
 class WeekmailAdmin(admin.ModelAdmin):
@@ -33,9 +30,10 @@ class WeekmailAdmin(admin.ModelAdmin):
 
     def display(self, request, queryset):
         response = HttpResponse()
+        html_parser = html.parser.HTMLParser()
         for weekmail in queryset:
             response.write(render_to_string('communication/display_weekmail.html',
-                {'weekmail': weekmail}))
+                {'weekmail': html_parser.unescape(weekmail)}))
         return response
 
     send.short_description = _("Send selected weekmails")
