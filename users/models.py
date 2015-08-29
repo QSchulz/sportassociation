@@ -24,7 +24,7 @@ from django.core.validators import (RegexValidator, MaxValueValidator,
                                     MinValueValidator)
 from django.utils.translation import ugettext as _
 from datetime import date
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import (ObjectDoesNotExist, ValidationError)
 
 MALE = 'M'
 FEMALE = 'F'
@@ -156,13 +156,20 @@ class CustomUser(models.Model):
         verbose_name_plural = _('users')
 
     def is_member(self):
-        try:
-            return self.membership_history.latest('expiration_date').expiration_date >= date.today()
-        except ObjectDoesNotExist:
+        last_membership = self.last_membership()
+        if last_membership:
+            return last_membership.expiration_date >= date.today()
+        else:
             return False
 
     def is_manager(self):
         return self.managed_sports.exists()
+
+    def last_membership(self):
+        try:
+            return self.membership_history.latest('expiration_date')
+        except ObjectDoesNotExist:
+            return None
 
     def __str__(self):
         return '%s (%s)' % (self.user.get_full_name(), self.id)

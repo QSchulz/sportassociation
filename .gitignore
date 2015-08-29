@@ -99,6 +99,7 @@ media/
 static/admin/
 static/bootstrap/
 static/bootstrap-rtl/
+static/member_card.png
 
 #Ignore critical files
 localsettings.py

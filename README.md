@@ -50,6 +50,8 @@ You can test the application with:
 python sportassociation/manage.py runserver
 ```
 
+If you want to print member cards, you have to edit the function *print_cards* in users/admin,py and add a PNG template in static/static/member_card.png
+
 ####Author:
 Quentin SCHULZ (quentin.schulz@utbm.fr)
 
