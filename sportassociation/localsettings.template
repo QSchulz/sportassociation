@@ -25,3 +25,9 @@ EMAIL_HOST = ''
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 25
+
+#List of emails used in the weekmail
+#to
+WEEKMAIL_RECIPIENTS = []
+#from and cc
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

@@ -1,0 +1,23 @@
+{# BANNER #}
+<h1 style="background:rgb(44,214,214)">Introduction</h1>
+<div style="margin-left:30px">
+  {{ weekmail.introduction }}
+</div>
+<h1 style="background:rgb(44,214,214)">Summary</h1>
+  <ul>
+  {% for paragraph in weekmail.paragraphs.all %}
+    <li>
+      {{ paragraph.title }}
+    </li>
+  {% endfor %}
+  </ul>
+{% for paragraph in weekmail.paragraphs.all %}
+  <h1 style="background:rgb(44,214,214)">{{ paragraph.title }}</h1>
+      <div style="margin-left:30px">
+        {{ paragraph.content }}
+      </div>
+{% endfor %}
+<h1 style="background:rgb(44,214,214)">Conclusion</h1>
+<div style="margin-left:30px">
+  {{ weekmail.conclusion }}
+</div>

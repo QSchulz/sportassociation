@@ -6,6 +6,11 @@ from django.core.exceptions import ValidationError
 from django.contrib.contenttypes.fields import GenericRelation
 from users.models import CustomUser
 from management.models import (PublicFile, ProtectedImage, ProtectedFile)
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.contrib import messages
+from smtplib import SMTPException
+from sportassociation import settings
 
 
 class Weekmail(models.Model):
@@ -48,6 +53,36 @@ class Weekmail(models.Model):
 
     def __str__(self):
         return '%s' % (self.subject)
+
+    def send(self):
+        #Create the weekmail content and send it.
+        content = {'weekmail': self}
+        mail_content_txt = render_to_string('communication/weekmail.txt',
+                                            content)
+        mail_content_html = render_to_string('communication/weekmail.html',
+                                            content)
+
+        #You can change the weekmail recipients here.
+        recipients = settings.WEEKMAIL_RECIPIENTS
+        sender = settings.DEFAULT_FROM_EMAIL
+        try:
+            mail = EmailMultiAlternatives()
+            mail.subject = _('[Weekmail] %s') % (self.subject)
+            mail.body = mail_content_txt
+            mail.from_email = sender
+            mail.to = recipients
+            mail.cc = [sender,]
+            mail.attach_alternative(mail_content_html, "text/html")
+            for attachment in self.attached.all():
+                print(attachment.file.path)
+                mail.attach_file(attachment.file.path)
+            mail.send()
+            self.sent_date = timezone.now()
+            self.save()
+            return True
+        except SMTPException:
+            return False
+        return False
 
 
 class Paragraph(models.Model):

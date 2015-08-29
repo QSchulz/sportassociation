@@ -1,0 +1,12 @@
+<h1 style="background:red">Subject: {{ weekmail.subject }}</h1>
+{% include 'communication/weekmail.html' %}
+<h2 style="background:green">Attachements:</h2>
+{% if weekmail.attached.exists %}
+  <ul>
+    {% for attached in weekmail.attached.all %}
+      <li><a href="{{ attached.file.url }}">{{ attached.file.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>None</p>
+{% endif %}
