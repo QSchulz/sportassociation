@@ -1,9 +1,14 @@
 from django.contrib import admin
 from .models import (Sport, Match, Session, CancelledSession)
 
+class SessionInline(admin.StackedInline):
+    model = Session
+    extra = 0
+
 @admin.register(Sport)
 class SportAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
+    inlines = [SessionInline,]
 
     class Media:
         js = ('tinymce/tinymce.min.js', 'js/tinymce_4_config.js')
@@ -19,5 +24,3 @@ class CancelledSessionAdmin(admin.ModelAdmin):
 
     class Media:
         js = ('tinymce/tinymce.min.js', 'js/tinymce_4_config.js')
-
-admin.site.register(Session)
