@@ -14,6 +14,7 @@ class Sport(models.Model):
 
     Attributes:
         - creation_date: datetime of the creation of the sport. Not editable.
+        - description: string storing the description of the sport. Can be None.
         - is_open: boolean indicating if the sport can be practiced.
         - mailing_list: string storing the email representing the mailing list
             used to communicate with all participants of this sport. Can be None.
@@ -35,6 +36,7 @@ class Sport(models.Model):
     """
 
     creation_date = models.DateTimeField(auto_now_add=True)
+    description = models.TextField(blank=True)
     is_open = models.BooleanField(default=True)
     mailing_list = models.EmailField(blank=True)
     modification_date = models.DateTimeField(auto_now=True)

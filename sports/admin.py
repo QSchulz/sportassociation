@@ -5,6 +5,9 @@ from .models import (Sport, Match, Session, CancelledSession)
 class SportAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
+    class Media:
+        js = ('tinymce/tinymce.min.js', 'js/tinymce_4_config.js')
+
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
 
@@ -16,5 +19,5 @@ class CancelledSessionAdmin(admin.ModelAdmin):
 
     class Media:
         js = ('tinymce/tinymce.min.js', 'js/tinymce_4_config.js')
-        
+
 admin.site.register(Session)
