@@ -29,20 +29,10 @@ class AdminUserCreateView(View):
                         first_name=form.cleaned_data['first_name'],
                         last_name=form.cleaned_data['last_name'])
             user.set_password(password)
-            customUser = CustomUser(birthdate=form.cleaned_data['birthdate'],
-                                    competition_license=form.\
-                                        cleaned_data['competition_license'],
-                                    competition_expiration=form.\
-                                        cleaned_data['competition_expiration'],
-                                    gender=form.cleaned_data['gender'],
-                                    id_photo=request.FILES['id_photo'],
-                                    nickname=form.cleaned_data['nickname'],
-                                    phone=form.cleaned_data['phone'],
-                                    size=form.cleaned_data['size'])
-            #TODO: Catch exceptions and if occuring, rollback the transaction
-            #above.
+            #TODO: Catch exceptions and if occuring, rollback the transactions
+            #below.
             user.save()
-            customUser.user = user;
+            customUser = CustomUser(user=user, id_photo=request.FILES['id_photo'])
             customUser.save()
 
             #Create the email content and send it.
@@ -59,9 +49,9 @@ class AdminUserCreateView(View):
             except SMTPException:
                 messages.add_message(request, messages.ERROR, _('Failed to send \
                                     credentials by mail.'))
-            return HttpResponseRedirect('/admin/auth/user/%s' % (user.id))
+            return HttpResponseRedirect('/admin/users/customuser/%s' % (customUser.id))
         return render(request, self.template_name, {'form': form})
 
-    @method_decorator(permission_required('add_user'))
+    @method_decorator(permission_required('users.add_customuser'))
     def dispatch(self, *args, **kwargs):
         return super(AdminUserCreateView, self).dispatch(*args, **kwargs)

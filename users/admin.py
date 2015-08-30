@@ -2,41 +2,46 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser
+from management.admin import MembershipInline
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse
 from PIL import Image, ImageDraw, ImageFont
 
 admin.site.unregister(User)
 
-class CustomUserInline(admin.StackedInline):
+@admin.register(CustomUser)
+class CustomUserAdmin(admin.ModelAdmin):
     model = CustomUser
     can_delete = False
+    inlines = [MembershipInline,]
     exclude = ('position',)
-
-@admin.register(User)
-class CustomUserAdmin(UserAdmin):
-    inlines = (CustomUserInline,)
-    can_delete = False
     actions = ['print_cards',]
     fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'password', 'first_name', 'last_name', 'email')}
+            'fields': ('user', 'id_photo', 'nickname', 'birthdate', 'gender')}
         ),
-        (_('Status'), {
-            'classes': ('wide', 'collapse',),
-            'fields': ('is_active', 'is_superuser', 'is_staff',)}
+        (_('Competition'), {
+            'classes': ('wide','collapse'),
+            'fields': ('competition_license', 'competition_expiration')}
         ),
-        (_('Dates'), {
-            'classes': ('wide', 'collapse',),
-            'fields': ('last_login', 'date_joined',)}
+        (_('Miscellaneous'), {
+            'classes': ('wide','collapse'),
+            'fields': ('phone', 'size')}
         ),
+        (_('Privacy Scopes'), {
+            'classes': ('wide', 'collapse'),
+            'fields': ('mail_scope', 'phone_scope', 'global_scope')}
+        )
     )
+
+
+    #TODO: Collapse inlines
 
     #TODO: Print multiple cards one below each other.
     def print_cards(self, request, queryset):
-        for user in queryset:
-            if not user.customuser.is_member():
+        for customuser in queryset:
+            if not customuser.is_member():
                 continue
             im = Image.open('static/member_card.png')
             width = 300
@@ -47,9 +52,10 @@ class CustomUserAdmin(UserAdmin):
             diff_big_small_width = 6.0
             info_height = 23
             color1 = (52,152,219)
-            info = [str(user.customuser.last_membership().expiration_date),
-                    str(user.id), user.first_name, user.last_name]
-            id_photo = Image.open(user.customuser.id_photo.path)
+            info = [str(customuser.last_membership().expiration_date),
+                    str(customuser.user.id), customuser.user.first_name,
+                    customuser.user.last_name]
+            id_photo = Image.open(customuser.id_photo.path)
             font = ImageFont.truetype('DroidSansMono.ttf', 12)
             id_ratio = 45/35
 
@@ -101,3 +107,13 @@ class CustomUserAdmin(UserAdmin):
 
 
     print_cards.short_description = _('Print member cards for the selected users.')
+
+class CustomUserInline(admin.StackedInline):
+    model = CustomUser
+    can_delete = False
+    exclude = ('position',)
+
+@admin.register(User)
+class UserAdmin(UserAdmin):
+    inlines = (CustomUserInline,)
+    can_delete = False

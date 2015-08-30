@@ -22,6 +22,10 @@ class PublicFileInline(GenericTabularInline):
 class PublicImageInline(GenericTabularInline):
     model = PublicImage
 
+class MembershipInline(admin.StackedInline):
+    model = Membership
+    extra = 0
+
 @admin.register(MembershipType)
 class MembershipTypeAdmin(admin.ModelAdmin):
 
