@@ -31,7 +31,8 @@ class CustomUserAdmin(admin.ModelAdmin):
         ),
         (_('Privacy Scopes'), {
             'classes': ('wide', 'collapse'),
-            'fields': ('mail_scope', 'phone_scope', 'global_scope')}
+            'fields': ('mail_scope', 'phone_scope', 'global_scope',
+                'diffusion_authorisation')}
         )
     )
 

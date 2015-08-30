@@ -85,6 +85,8 @@ class CustomUser(models.Model):
             license. Can be None.
         - competition_license: string storing the competition license number of
             the user.
+        - diffusion_authorisation: boolean indicating if the user gave his
+            agreement on the diffusion of his/her photos.
         - gender: value of GENDERS enumeration indicating the gender of the user.
             Can be None.
         - global_scope: value of SCOPES enumeration indicating the privacy scope
@@ -130,6 +132,7 @@ class CustomUser(models.Model):
     birthdate = models.DateField(null=True, blank=True)
     competition_license = models.CharField(max_length=15, blank=True)
     competition_expiration = models.DateField(null=True, blank=True)
+    diffusion_authorisation = models.BooleanField(default=True)
     gender = models.CharField(max_length=1, choices=GENDERS, blank=True)
     global_scope = models.PositiveSmallIntegerField(choices=SCOPES, default=1,
                     validators = [MaxValueValidator(SCOPE_MANAGER),
