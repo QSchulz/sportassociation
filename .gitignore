@@ -95,11 +95,11 @@ Desktop.ini
 #Uploaded files
 media/
 
-#Static files from dependencies
-static/admin/
-static/bootstrap/
-static/bootstrap-rtl/
+#Private static files
 static/member_card.png
+
+#Deployed static files
+deploy/
 
 #Ignore critical files
 localsettings.py
