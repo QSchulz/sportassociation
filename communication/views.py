@@ -35,7 +35,6 @@ class HomeView(View):
             'days_sessionsPerDay': zip(days,
                 [sessions.filter(weekday=weekday) for weekday in weekdays]),
             'match': {'is_past': is_past, 'object': match},}
-        print(content)
         return render(request, self.template_name, content)
 
     def post(self, request):
