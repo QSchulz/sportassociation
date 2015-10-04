@@ -45,19 +45,19 @@ class CustomUserAdmin(admin.ModelAdmin):
             if not customuser.is_member():
                 continue
             im = Image.open('static/member_card.png')
-            width = 300
-            height = 190
-            header_height = 40.0
-            interspace = 9.0
-            big_width = 70.0
-            diff_big_small_width = 6.0
-            info_height = 23
+            width = 900
+            height = 570
+            header_height = 120.0
+            interspace = 27.0
+            big_width = 210.0
+            diff_big_small_width = 18.0
+            info_height = 69
             color1 = (52,152,219)
             info = [str(customuser.last_membership().expiration_date),
                     str(customuser.user.id), customuser.user.first_name,
                     customuser.user.last_name]
             id_photo = Image.open(customuser.id_photo.path)
-            font = ImageFont.truetype('DroidSansMono.ttf', 12)
+            font = ImageFont.truetype('DroidSansMono.ttf', 36)
             id_ratio = 45/35
 
             #Crop the photo to match an id photo ratio.
@@ -72,7 +72,7 @@ class CustomUserAdmin(admin.ModelAdmin):
                 id_photo = id_photo.crop((int(diff_width/2), 0,
                     int(id_photo.width - diff_width/2), id_photo.height))
 
-            height_id = int(height - header_height - 25)
+            height_id = int(height - header_height - 75)
             width_id = int(height_id / id_ratio)
             id_photo = id_photo.resize((width_id, height_id))
 
@@ -81,7 +81,7 @@ class CustomUserAdmin(admin.ModelAdmin):
             space = interspace + header_height
             for value in info:
                 #Adapt font size to available space.
-                font_size = 15
+                font_size = 45
                 font = ImageFont.truetype('DroidSansMono.ttf', font_size)
                 (value_width, value_height) = draw.textsize(value, font=font)
                 while value_width > width - (big_width + width_id):
