@@ -15,14 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from communication.views import HomeView
 
 from . import settings
 from users.views import AdminUserCreateView
 
 urlpatterns = [
-    #Comment the next line if you want to create users with random passwords.
-    url(r'^admin/users/customuser/add/', AdminUserCreateView.as_view()),
+    #Comment the next line if you don't want to create users with random passwords.
+    url(r'^admin/users/customuser/add/$', AdminUserCreateView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', HomeView.as_view(), name='home'),
 ]
 
 if settings.DEBUG:

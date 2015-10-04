@@ -1,0 +1,176 @@
+{% load staticfiles %}
+
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+
+{% url 'home' as home_url %}
+
+<head>
+    <title>BDS UTBM - Accueil</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Site web du Bureau des Sports de l'Université de Technologie de Belfort-Montbéliard.">
+    <meta name="keywords" content="BDS, Bureau, des, sports, sport, utbm, université, technologie, belfort, etudiants, montbeliard, sevenans">
+    <meta name="author" content="Oleil & Istik">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Icons -->
+    <link rel="apple-touch-icon" href="{% static "img/apple-icon-touch.png" %}">
+    <link rel="icon" type="image/png" href="{% static "img/favicon.png" %}" />
+    <!-- Bootstrap -->
+    <link href="{% static "css/theme-bds.css" %}" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="container-fluid page">
+    <header>
+      <div id="header-top" class="orange"><img src="{% static "img/logo-bds.png" %}" alt="BDS"><span>Bureau des Sports de l'U.T.B.M.</span></div>
+      <nav class="navbar navbar-default orangeNavBar">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header orangeNavBar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="{% if request.path == home_url %}active{% endif %}"><a href="/"><span class="glyphicon glyphicon-home"></span> Accueil <span class="sr-only">(current)</span></a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="mobileDropdown" role="button" aria-haspopup="true" aria-expanded="false">News <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Articles</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Weekmail</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="mobileDropdown" role="button" aria-haspopup="true" aria-expanded="false">Activites <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Grandes Activites</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Evenements</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Sports</a></li>
+              <li><a href="#">Forum</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="mobileDropdown" role="button" aria-haspopup="true" aria-expanded="false">A propos <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Association</a></li>
+                  <li><a href="#">Partenaires</a></li>
+                  <li><a href="#">Bureau</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Nous contacter</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown orangeConnect">
+                {% if request.user.is_authenticated %}
+                  <a href="#" class="dropdown-toggle" data-toggle="mobileDropdown" role="button" aria-haspopup="true" aria-expanded="false">Mon compte <img src="{% static "img/connected.png" %}" alt="1"></a>
+                  <ul class="dropdown-menu">
+                    {% if request.user.is_staff %}
+                      <li><a href="#">Admin</a></li>
+                      <li role="separator" class="divider"></li>
+                    {% endif %}
+                    <li><a href="#">Deconnexion</a></li>
+                  </ul>
+                {% else %}
+                  <a href="#" role="button">Connexion <img src="{% static "img/not-connected.png" %}" alt="0"></a>
+                {% endif %}
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="container-fluid">
+      <div class="row">
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 footer-utbm">
+          <a href="http://www.utbm.fr/" target="_blank" >
+            <img src="{% static "img/logo-utbm.png" %}" alt="logo U.T.B.M.">
+          </a>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 border-left">
+          <p>
+            <b><span class="glyphicon glyphicon-map-marker"></span> Nous rencontrer</b><br>
+            <a  href="#" class="orangeLink" >Belfort</a><br>
+            <a href="#" class="orangeLink">Sevenans</a><br>
+            <a href="#" class="orangeLink">Montbéliard</a>
+          </p>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 no-mobile-border mobile-align-right border-left">
+          <p>
+            <b><span class="glyphicon glyphicon-thumbs-up"></span> Réseaux sociaux</b><br>
+            <a href="https://www.facebook.com/BDS.UTBM" class="blackLink" target="_blank">
+              <span><img src="{% static "img/logo-fb.png" %}" width="20px" alt="logo fb"></span> Facebook
+            </a><br>
+            <a href="https://www.youtube.com/user/BDSUTBM" class="blackLink" target="_blank">
+              <span><img src="{% static "img/logo-yt.png" %}" width="20px" alt="logo yt"></span> Youtube
+            </a>
+          </p>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 border-left">
+          <p><b>
+            <a class="blackLink" href="#">
+              <span class="glyphicon glyphicon-comment"></span> Mentions légales
+            </a><br>
+            <a class="blackLink" href="#" target="_blank">
+              <span class="glyphicon glyphicon-edit"></span> Fiche d'inscription
+            </a><br>
+            <a class="blackLink" href="#">
+              <span class="glyphicon glyphicon-envelope"></span> Contact
+            </a>
+          </b></p>
+        </div>
+      </div>
+      <div class="row partenaires">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+          <a href="https://www.societegenerale.fr" target="_blank">
+            <img src="{% static "img/societe-generale.jpg" %}" alt="Société Générale">
+          </a>
+          <a href="http://www.ville-belfort.fr" target="_blank">
+            <img src="{% static "img/belfort.jpg" %}" alt="Ville de Belfort">
+          </a>
+          <a href="http://www.territoiredebelfort.fr" target="_blank">
+            <img src="{% static "img/territoire_de_belfort.jpg" %}" alt="Territoire de Belfort">
+          </a>
+          <a href="http://www.agglo-montbeliard.fr" target="_blank">
+            <img src="{% static "img/pma.jpg" %}" alt="Pays de Montbéliard Agglomération">
+          </a>
+          <a href="http://www.montbeliard.fr" target="_blank">
+            <img src="{% static "img/montbeliard.jpg" %}" alt="Montbéliard">
+          </a>
+          <a href="http://www.casalsport.com" target="_blank">
+            <img src="{% static "img/casalsport.jpg" %}" alt="CASALSPORT">
+          </a>
+          <a href="http://www.go-sport.com/magasins/belfort" target="_blank">
+            <img src="{% static "img/gosport.jpg" %}" alt="GoSport">
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="center little-text">Site Web développé par l'équipe informatique du BDS - 2015/2016</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+  <script src="{% static "js/theme.js" %}"></script>
+</body>
+
+{% bootstrap_javascript %}

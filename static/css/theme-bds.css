@@ -1,0 +1,229 @@
+/*!
+ * BDS WebSite Stylesheet
+ * Developed by Oleil & Istik
+ */
+
+@font-face {
+    font-family: 'arkhip';
+    src: url('./fonts/arkhip.regular-webfont.eot');
+    src: url('./fonts/arkhip.regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/arkhip.regular-webfont.woff2') format('woff2'),
+         url('../fonts/arkhip.regular-webfont.woff') format('woff'),
+         url('../fonts/arkhip.regular-webfont.ttf') format('truetype'),
+         url('../fonts/arkhip.regular-webfont.svg#arkhipregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* ----------------------
+         GENERAL
+------------------------*/
+
+.page{
+    padding: 0;
+}
+.orangeLink{
+    color:#FF8909;
+}
+.orangeLink:hover{
+    color: rgba(255,137,9,0.5);
+    text-decoration: none;
+}
+.blackLink{
+    color: black;
+}
+.blackLink:hover{
+    color: rgba(0,0,0,0.5);
+    text-decoration: none;
+}
+.blackLink:hover img{
+    opacity:0.5;
+}
+.border-right{
+    border-right: 2px solid;
+}
+.border-left{
+    border-left: 2px solid;
+}
+.center{
+    text-align: center;
+}
+.little-text{
+    font-size: 12px;
+}
+.space-row{
+    min-height: 20px;
+}
+.title{
+    font-family: arkhip;
+    margin-bottom: -7px;
+    font-size:17px;
+}
+.greyBg{
+    background-color: #B7B7B7;
+}
+.orangeBg{
+ background-color: #FF9923;
+}
+.greyColor{
+    color: #B7B7B7;
+}
+.orangeColor{
+    color:#FF9923;
+}
+.article{
+    color: white;
+    padding-top: 10px;
+    padding-bottom : 10px;
+}
+@media screen and (max-width: 750px){
+    .no-mobile-border{
+        border: none;
+    }
+    .mobile-align-right{
+    text-align: right;
+    }
+}
+/* ----------------------
+         HEADER 
+------------------------*/
+header{
+    font-family: arkhip;
+    color: white;
+}
+#header-top img{
+    width: 20%;
+    max-width: 200px;
+    height: auto;
+}
+#header-top span{
+    font-size: 140%;
+}
+.navbar{
+    border:none;
+    border-radius:0px;
+}
+
+.orangeNavBar{
+    background-color:#FF9923;
+}
+.navbar li a{
+    color: white;
+}
+
+.navbar .dropdown-menu li a{
+    color: black;
+}
+
+.orange{
+    background-color:#FF8909;
+}
+
+.orangeSr{
+    background-color:#FFB963;
+}
+
+.orangeConnect{
+    background-color: #DC771F; 
+}
+/* Affiche le sous-menu juste avec un overflow - only for computers*/
+@media screen and (min-width: 750px){
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+    .dropdown:hover{
+        background-color: #FFBE63; 
+    }
+    .nav li:hover{
+        background-color: #FFBE63; 
+    }
+}
+
+@media screen and (max-width: 750px){
+    #header-top img{
+        width: 30%;
+        height: auto;
+    }
+    #header-top span{
+        font-size: 12px;
+    }
+    .navbar .dropdown-menu{
+        background-color: white;
+    }
+    .navbar .open .dropdown-menu,
+    .navbar .dropdown-menu li:hover{
+        background-color: white;
+    }
+    
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus{
+    background-color: #FFBE63; 
+}
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a:hover{
+    color: white;
+}
+.navbar-default .navbar-nav .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav .dropdown-menu > li > a:focus{
+    color: #FF9923;
+}
+
+/* ----------------
+        FOOTER
+------------------*/
+
+footer{
+    margin-top:10px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    background-color: #F0F0F0 ;
+}
+.footer-utbm{
+    text-align: right;
+}
+.footer-utbm img{
+    width: 100%;
+    max-width: 200px;
+}
+.footer-utbm img:hover{
+    opacity: 0.5;
+}
+
+footer .partenaires{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+footer .partenaires img{
+    max-width: 70px;
+    margin-right: 5px;
+}
+
+/* ---------------
+    ACCUEIL
+-----------------*/
+
+.carouselAccueil .carousel-inner{
+    max-height: 270px;
+}
+
+.carouselAccueil .carousel-inner img{
+    width: 100%; /* Trouver le moyen de centrer l'image */
+}
+.compet{
+    color: white;
+    padding-top: 5%;
+    padding-bottom:5%;
+    font-family: arkhip;
+    font-size: 22px;
+    margin-left: 0px;
+}
+.compet .nb{
+    font-size:44px;
+}
+.compet span{
+    font-size: 16px;
+}
