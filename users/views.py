@@ -24,11 +24,21 @@ class AdminUserCreateView(View):
         form = AdminUserForm(request.POST, request.FILES)
         if form.is_valid():
             password = User.objects.make_random_password()
-            user = User(username=form.cleaned_data['email'],
-                        email=form.cleaned_data['email'],
+            user = User(email=form.cleaned_data['email'],
                         first_name=form.cleaned_data['first_name'],
                         last_name=form.cleaned_data['last_name'])
             user.set_password(password)
+            user.username = text.slugify(user.first_name) + "." + text.slugify(user.last_name)
+            user.username = user.username[:30]
+            counter = 0
+            try:
+                while True:
+                    User.objects.get(username=user.username)
+                    last_letter_index = 30-len(str(counter))
+                    user.username = user.username[:last_letter_index] + str(counter)
+                    counter+=1
+            except ObjectDoesNotExist:
+                pass
             #TODO: Catch exceptions and if occuring, rollback the transactions
             #below.
             user.save()
