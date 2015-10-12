@@ -11,6 +11,8 @@ from django.core.mail import send_mail
 from django.utils.translation import ugettext as _
 from django.template.loader import render_to_string
 from django.contrib import messages
+from django.utils import text
+from django.core.exceptions import ObjectDoesNotExist
 from smtplib import SMTPException
 
 class AdminUserCreateView(View):
