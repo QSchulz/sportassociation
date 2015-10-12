@@ -403,7 +403,7 @@ class Membership(models.Model):
 
     def clean(self):
         if (self.creation_date is not None and \
-                self.expiration_date <= self.creation_date) or \
+                self.expiration_date <= self.creation_date.date()) or \
                 (self.creation_date is None and self.expiration_date <=\
                 date.today()):
             raise ValidationError(_('Expiration date cannot be after the creation\
