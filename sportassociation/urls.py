@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^users/', include('users.urls', namespace='users')),
+    url(r'^', include('django.contrib.auth.urls')),
 ]
 
 if settings.DEBUG:

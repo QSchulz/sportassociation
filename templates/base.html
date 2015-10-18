@@ -84,10 +84,10 @@
                     {% endif %}
                     <li><a href="{% url 'users:account' %}">Voir mon compte</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">Deconnexion</a></li>
+                    <li><a href="{% url 'logout' %}">Deconnexion</a></li>
                   </ul>
                 {% else %}
-                  <a href="#" role="button">Connexion <img src="{% static "img/not-connected.png" %}" alt="0"></a>
+                  <a href="{% url 'login' %}" role="button">Connexion <img src="{% static "img/not-connected.png" %}" alt="0"></a>
                 {% endif %}
               </li>
             </ul>

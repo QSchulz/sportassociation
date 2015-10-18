@@ -72,6 +72,10 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'sportassociation.urls'
 
+LOGIN_URL = 'django.contrib.auth.views.login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'django.contrib.auth.views.logout'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
