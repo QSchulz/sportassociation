@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+        <img class="userPic" src="{{ object.id_photo.url }}" alt="Utilisateur">
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4">
+        <h2 class="orangeColor">Profil</h2>
+        <p>Nom : <b class="orangeColor">{{ object.user.first_name }}</b><br>
+          Prénom : <b class="orangeColor">{{ object.user.last_name }}</b><br>
+          {% if object.nickname %}Surnom : <b class="orangeColor">{{ object.nickname }}</b><br>{% endif %}
+          {% if object.birthdate %}Date de naissance : {{ object.birthdate }}<br>{% endif %}
+          ID : {{ object.id }}<br>
+          Cotisant : {% if not object.is_member %}Non{% else %}Jusqu'au {{ object.last_membership.expiration_date }}{% endif %}<br>
+          Sport(s) suivi(s) :
+          {% if not object.subscribed_sports.exists %}
+            Aucun
+          {% else %}
+            {% for sport in object.subscribed_sports.all %}
+              <a href="/sports/{{sport.id}}/{{sport.slug}}">{{ sport.name }}</a>{% if not forloop.last %},{% endif %}
+            {% endfor %}
+          {% endif %}
+          <br>
+          Responsable :
+          {% if not object.managed_sports.exists %}
+            Aucun
+          {% else %}
+            {% for sport in object.managed_sports.all %}
+              <a href="/sports/{{sport.id}}/{{sport.slug}}">{{ sport.name }}</a>{% if not forloop.last %},{% endif %}
+            {% endfor %}
+          {% endif %}
+          <br>
+        </p>
+        {% if object.id == request.user.id %}
+        <div class="btn-group">
+          <a href="{% url 'users:account_edit' %}" class="btn btn-default btn-xs" type="button">
+              Modifier
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

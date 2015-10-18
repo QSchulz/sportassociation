@@ -44,15 +44,34 @@
 
     <!-- Controls -->
     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
     </a>
     <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
     </a>
   </div>
   <div class="space-row"></div>
+  {% if informations %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 title orangeColor">
+        <span class="glyphicon glyphicon-exclamation-sign"></span> Information{% if informations.count > 1 %}s{% endif %} importante{% if informations.count > 1 %}s{% endif %}
+      </div>
+    </div>
+    {% for information in informations %}
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12 orangeBg important col-sm-12 whiteColor">
+        {% autoescape off %}
+        {{ information.title|upper }}: {{ information.content }}
+        {% endautoescape %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="space-row"></div>
+  {% endif %}
   <div class="row container-fluid">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
       <div class="row">

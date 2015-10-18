@@ -20,6 +20,12 @@
          GENERAL
 ------------------------*/
 
+a{
+    color:#FF9923;
+}
+a:hover{
+    color:#FF9132;
+}
 .page{
     padding: 0;
 }
@@ -72,10 +78,30 @@
 .orangeColor{
     color:#FF9923;
 }
-.article{
+.whiteColor{
+    color: white;
+}
+.planningAccueil{
     color: white;
     padding-top: 10px;
     padding-bottom : 10px;
+}
+nav .pagination .active a{
+    background-color: #FF9923;
+    border-color: #FF9923;
+}
+nav .pagination .active a:hover{
+    background-color: #FF9923;
+    border-color: #FF9923;
+}
+nav .pagination li a{
+    color: #FF9923;
+}
+nav .pagination li a:hover{
+    color: #B7B7B7;
+}
+.align-right{
+    text-align: right;
 }
 @media screen and (max-width: 750px){
     .no-mobile-border{
@@ -89,7 +115,7 @@
          HEADER
 ------------------------*/
 header{
-    font-family: arkhip;
+    font-family: arkhip,sans-serif;
     color: white;
 }
 #header-top img{
@@ -122,6 +148,7 @@ header{
 
 .orangeSr{
     background-color:#FFB963;
+    color: #555555; !important
 }
 
 .orangeConnect{
@@ -217,7 +244,7 @@ footer .partenaires img{
     color: white;
     padding-top: 5%;
     padding-bottom:5%;
-    font-family: arkhip;
+    font-family: arkhip,sans-serif;
     font-size: 22px;
     margin-left: 0px;
 }
@@ -226,4 +253,34 @@ footer .partenaires img{
 }
 .compet span{
     font-size: 16px;
+}
+.important{
+    padding: 1%;
+}
+
+/* ---------------
+       NEWS
+-----------------*/
+
+.article{
+    padding: 5%;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.article a{
+    color: white;
+    text-decoration: none;
+}
+
+/* ---------------
+      COMPTE
+-----------------*/
+
+.userPic{
+    padding-left: 15%;
+    padding-right: 15%;
+    height:auto;
+    max-height: 300px;
+    max-width: 100%;
 }

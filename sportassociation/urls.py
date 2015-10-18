@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^admin/users/customuser/add/$', AdminUserCreateView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^users/', include('users.urls', namespace='users')),
 ]
 
 if settings.DEBUG:

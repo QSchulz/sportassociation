@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import (render, get_object_or_404)
 from django.http import HttpResponseRedirect
 from .forms import AdminUserForm
 from .models import CustomUser
 from sportassociation import settings
-from django.views.generic import View
+from django.views.generic import (View, DetailView, UpdateView)
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
@@ -14,6 +14,7 @@ from django.contrib import messages
 from django.utils import text
 from django.core.exceptions import ObjectDoesNotExist
 from smtplib import SMTPException
+from django.core.urlresolvers import reverse_lazy
 
 class AdminUserCreateView(View):
     initial = {'form': AdminUserForm()}
@@ -67,3 +68,22 @@ class AdminUserCreateView(View):
     @method_decorator(permission_required('users.add_customuser'))
     def dispatch(self, *args, **kwargs):
         return super(AdminUserCreateView, self).dispatch(*args, **kwargs)
+
+
+class AccountView(DetailView):
+    model = CustomUser
+
+    def get_object(self, queryset=None):
+        return self.request.user.customuser
+
+class AccountEdit(UpdateView):
+    model = CustomUser
+    success_url = reverse_lazy('users:account')
+    fields=['nickname', 'birthdate', 'gender', 'global_scope', 'phone_scope',
+        'mail_scope', 'phone', 'size']
+
+    def get_object(self, queryset=None):
+        return self.request.user.customuser
+
+class DisplayView(DetailView):
+    model = CustomUser

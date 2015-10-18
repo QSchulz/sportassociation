@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.db.models import Q
 from activities.models import Activity
-from communication.models import Article
+from communication.models import (Article, Information)
 from sports.models import (Session, Match)
 from management.models import Weekday
 from datetime import (datetime, timedelta)
@@ -23,6 +23,10 @@ class HomeView(View):
         sessions = Session.objects.filter(sport__is_open=True).\
             filter(Q(weekday=nowWeekday) | Q(weekday=(nowWeekday+1)%7) | Q(weekday=(nowWeekday+2)%7) ).\
             order_by('weekday').order_by('start_time')
+        informations = Information.objects.filter(is_important=True, is_published=True).\
+            filter(Q(start_date__lt=now) | Q(start_date__isnull=True)).\
+            filter(Q(end_date__gt=now) | Q(end_date__isnull=True)).\
+            order_by('-end_date')
         is_past = False
         match = Match.objects.filter(date__gt=now).order_by('date').first()
         if not match:
@@ -34,7 +38,8 @@ class HomeView(View):
             'num_frontpage': range(activities.count() + articles.count()),
             'days_sessionsPerDay': zip(days,
                 [sessions.filter(weekday=weekday) for weekday in weekdays]),
-            'match': {'is_past': is_past, 'object': match},}
+            'match': {'is_past': is_past, 'object': match},
+            'informations': informations}
         return render(request, self.template_name, content)
 
     def post(self, request):
