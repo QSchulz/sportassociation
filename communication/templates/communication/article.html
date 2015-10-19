@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+      <div clas="row">
+        <div class="title orangeColor">{{ article.title }}</div>
+      </div>
+      <div class="row">
+        <div class="orangeBg article whiteColor">
+          <p>
+            {% if article.cover %}<img width="100%" src="{{ article.cover.url }}" alt="{{ article.cover.filename }}">{% endif %}
+            {% autoescape off %}
+            {{ article.content }}
+            {% endautoescape %}
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <!-- DISPLAY WHAT THE NEWEST ARTICLES AND WEEKMAIL ARTICLES -->
+  <div class="container-fluid">
+    {% for weekmail in object_list %}
+      {% if forloop.counter0|divisibleby:"3" or forloop.first %}
+      <div class="row">
+      {% endif %}
+          <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+            <a href="{% url 'communication:weekmail' pk=weekmail.id %}">
+                <div clas="row">
+                    <div class="title orangeColor">
+                        {{ weekmail.subject }}
+                      </div>
+                </div>
+              </a>
+              <div class="row">
+                  <div class="orangeBg article whiteColor">
+                    <a href="{% url 'communication:weekmail' pk=weekmail.id %}">
+                      <p>
+                        {% autoescape off %}
+                        {{ weekmail.introduction }}<br>
+                        {% for paragraph in weekmail.paragraphs.all %}
+                          {{ paragraph.title }}<br>
+                        {% endfor %}
+                        {% endautoescape %}
+                        <b>Lire la suite</b>
+                      </p>
+                    </a>
+                  </div>
+              </div>
+          </div>
+      {% if forloop.counter0|add:-2|divisibleby:"3" or forloop.last %}
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="row center">
+    <nav>
+      <ul class="pager">
+        {% if page_obj.has_previous %}<li><a href="?page={{ page_obj.previous_page_number }}"><span aria-hidden="true">&larr;</span> Plus récents</a></li>{% endif %}
+        {% if page_obj.has_next %}<li><a href="?page={{ page_obj.next_page_number }}"> Plus anciens<span aria-hidden="true">&rarr;</span></a></li>{% endif %}
+      </ul>
+    </nav>
+  </div>
+</div>
+
+{% endblock %}
