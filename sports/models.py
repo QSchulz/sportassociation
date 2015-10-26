@@ -136,14 +136,14 @@ class Session(models.Model):
     weekday = models.PositiveSmallIntegerField(choices=Weekday.WEEKDAYS, null=True,
                 blank=True)
 
-    def _limit_choices_manager():
-        return models.Q(managed_sports__isnull=False)
+    #def _limit_choices_manager():
+    #    return models.Q(managed_sports__isnull=False)
 
     location = models.ForeignKey(Location, related_name='sessions',
                 on_delete=models.SET_NULL, null=True)
     manager = models.ForeignKey(CustomUser, related_name='managed_sessions',
-                on_delete=models.SET_NULL, null=True,
-                limit_choices_to=_limit_choices_manager)
+                on_delete=models.SET_NULL, null=True)#,
+                #limit_choices_to=_limit_choices_manager)
     sport = models.ForeignKey(Sport, related_name='sessions',
             limit_choices_to={'is_open': True})
 
