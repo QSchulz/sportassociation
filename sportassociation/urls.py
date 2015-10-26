@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^communication/', include('communication.urls', namespace='communication')),
     url(r'^activities/', include('activities.urls', namespace='activities')),
+    url(r'^sports/', include('sports.urls', namespace='sports')),
 ]
 
 if settings.DEBUG:

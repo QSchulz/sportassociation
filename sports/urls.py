@@ -1,0 +1,8 @@
+from django.conf.urls import include, url
+from .views import (OverviewView, DetailView)
+
+urlpatterns = [
+    url(r'^$', OverviewView.as_view(), name='overview'),
+    url(r'^(?P<pk>[0-9]+)/(?P<slug>[-\w]+)/$', DetailView.as_view(), name='sport'),
+    url(r'^(?P<pk>[0-9]+)/$', DetailView.as_view(), name='sport'),
+]

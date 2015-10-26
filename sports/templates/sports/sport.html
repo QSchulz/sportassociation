@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <!-- DISPLAY THE NEWEST SPORT TOOK -->
+  <div class="container-fluid">
+    <div class="row border-bottom title2">
+      <b>Description :</b>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        {% autoescape off %}
+        {{ sport.description }}
+        {% endautoescape %}
+      </div>
+    </div>
+    <div class="space-row"></div>
+    <div class="row border-bottom title2">
+      <b>Responsables :</b>
+    </div>
+    <div class="row">
+      {% if request.user.is_authenticated %}
+      {% for manager in sport.managers.all %}
+      <div class="col-lg-2 col-md-3 col-xs-6 col-sm-4">
+        <div class="row">
+          <div class="greyBg circle whiteColor">
+            <a href="{% url 'users:display' pk=manager.id %}">
+              <div class="circle-content">
+                <div>
+                  <img src='{{ manager.id_photo.url }}' alt='{{ manager.id_photo.filename }}' width="100%"/>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row center">
+          {{ manager.user.first_name }} {{ manager.user.last_name }}
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+        Vous devez être connecté pour accéder à cette information.
+      {% endif %}
+    </div>
+    <div class="space-row"></div>
+    <div class="row border-bottom title2">
+      <b>Créneaux :</b>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        {% for session in sport.sessions.all %}
+        <div>
+          Horaire :
+          {% if session.weekday %}
+            {% if session.weekday == 2 %} Lundi {% elif session.weekday == 3 %} Mardi {% elif session.weekday == 4 %} Mercredi {% elif session.weekday == 5 %} Jeudi {% elif session.weekday == 6 %} Vendredi {% elif session.weekday == 7 %} Samedi {% elif session.weekday == 1 %} Dimanche {% endif %}
+          {% else %}
+            {{ session.date|date:'l j F Y' }}
+          {% endif %} {{ session.start_time }}-{{ session.end_time }}<br>
+            Salle : {{ session.location.name }}<br>
+            {% if session.location.address or session.location.city %}Adresse : {{ session.location.address }}<br>{% endif %}
+            {% if session.location.latitude and session.location.longitude %}Lat. & Long. : {{ session.location.latitude|stringformat:'f' }}, {{ session.location.longitude|stringformat:'f' }}{% endif %}<br>
+          <a href="https://maps.google.com/?q={% if session.location.latitude and session.location.longitude %}{{ session.location.latitude|stringformat:'f' }}, {{ session.location.longitude|stringformat:'f' }}{% else %}{{ session.location.address }} {{ session.location.city }}{% endif %}">
+            Voir sur un plan
+          </a><br><br>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

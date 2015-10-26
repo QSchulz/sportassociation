@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <!-- DISPLAY THE NEWEST SPORT TOOK -->
+  <div class="container-fluid">
+    {% if open_sports %}
+    <div class="row border-bottom title2">
+      <b>Ouverts ce semestre :</b>
+    </div>
+    <div class="row">
+      {% for sport in open_sports %}
+      <div class="col-lg-2 col-md-3 col-xs-6 col-sm-4">
+        <div class="greyBg circle whiteColor">
+          <a href="{% url 'sports:sport' pk=sport.id slug=sport.slug %}">
+            <div class="circle-content">
+              <div>
+                <span>{{ sport.name }}</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="space-row"></div>
+    {% endif %}
+    {% if closed_sports %}
+    <div class="row border-bottom title2">
+      <b>Non-repris ce semestre :</b>
+    </div>
+    <div class="row">
+      {% for sport in closed_sports %}
+      <div class="col-lg-2 col-md-3 col-xs-6 col-sm-4">
+        <a href="{% url 'sports:sport' pk=sport.id slug=sport.slug %}">
+          <div class="greyBg circle whiteColor">
+            <div class="circle-content">
+              <div>
+                <span>{{ sport.name }}</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
