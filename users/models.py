@@ -157,6 +157,7 @@ class CustomUser(models.Model):
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
+        ordering = ['id',]
 
     def is_member(self):
         last_membership = self.last_membership()
