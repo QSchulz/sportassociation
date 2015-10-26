@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+      <div clas="row">
+        <div class="title orangeColor">{{ activity.title }}</div>
+      </div>
+      <div class="row">
+        <div class="orangeBg article whiteColor">
+          <p>
+            {% if activity.cover %}<img width="100%" src="{{ activity.cover.url }}" alt="{{ activity.cover.filename }}">{% endif %}
+            {% autoescape off %}
+            {{ activity.content }}
+            {% endautoescape %}
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^users/', include('users.urls', namespace='users')),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^communication/', include('communication.urls', namespace='communication')),
+    url(r'^activities/', include('activities.urls', namespace='activities')),
 ]
 
 if settings.DEBUG:

@@ -11,6 +11,9 @@
 {% url 'communication:news' as news_url %}
 {% url 'communication:articles' as articles_url %}
 {% url 'communication:weekmails' as weekmails_url %}
+{% url 'activities:overview' as activities_overview_url %}
+{% url 'activities:activities' as activities_url %}
+{% url 'activities:big-activities' as big_activities_url %}
 
 <head>
     <title>BDS UTBM - Accueil</title>
@@ -56,12 +59,12 @@
                 </ul>
               </li>
               <li><a href="#">Sports</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="mobileDropdown" role="button" aria-haspopup="true" aria-expanded="false">Activites <span class="caret"></span></a>
+              <li class="dropdown {% if request.path == activities_overview_url or request.path == big_activities_url or request.path == activities_url %}active{% endif %}">
+                <a href="{% url 'activities:overview' %}" class="dropdown-toggle" data-toggle="mobileDropdown" role="button" aria-haspopup="true" aria-expanded="false">Activités <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Grandes Activites</a></li>
+                  <li {% if request.path == big_activities_url %}class="active"{% endif %}><a href="{% url 'activities:big-activities' %}">Grandes Activités</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="#">Evenements</a></li>
+                  <li {% if request.path == activities_url %}class="active"{% endif %}><a href="{% url 'activities:activities' %}">Événements</a></li>
                 </ul>
               </li>
               <li><a href="#">Forum</a></li>
