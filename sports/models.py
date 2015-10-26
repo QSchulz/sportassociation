@@ -160,7 +160,7 @@ class Session(models.Model):
         if self.start_time >= self.end_time:
             raise ValidationError(_('Start time cannot be after end time.'))
         if not self.sport in self.manager.managed_sports.all():
-            raise ValidationError(_('%s %s does not manage the sport. (S)he can\'t \
+            raise ValidationError(_('%s does not manage the sport. (S)he can\'t \
                                     manage sessions of this sport.' % \
                                     (self.manager.user.get_full_name())))
 
