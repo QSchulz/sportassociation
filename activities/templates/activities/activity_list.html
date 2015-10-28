@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
+{% url 'activities:big-activities' as big_activities_url %}
+{% url 'activities:activities' as activities_url %}
+
+{% block title %}
+  {% if request.path == big_activities_url %}Dernières Grandes Activités
+  {% elif request.path == activities_url %}Derniers Événements
+  {% else %}Derniers Événements et Grandes Activités
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 
 <div class="container-fluid">
