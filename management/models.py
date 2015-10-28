@@ -181,6 +181,7 @@ class Permanence(models.Model):
     related_activities = models.ManyToManyField('activities.Activity',
                             related_name='permanences', blank=True,
                             limit_choices_to={'start_date__gt': timezone.now})
+    location = models.ForeignKey(Location, related_name='permanences')
 
     class Meta:
         verbose_name = _('permanence')

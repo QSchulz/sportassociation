@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load bootstrapped_goodies_tags %}
+{% load bootstrap3 %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row border-bottom title2">
+      <b>Nous rencontrer</b>
+    </div>
+    <div class="space-row"></div>
+    <div class="row">
+      {% for location in locations %}
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{ location.name }}<br>{{ location.address }}, {{ location.city }}</h3>
+          </div>
+          <div class="panel-body">
+            {% for permanence in location.permanences.all %}
+              {% if permanence.weekday %}
+                Tous les {% if permanence.weekday == 2 %} Lundis {% elif permanence.weekday == 3 %} Mardis {% elif permanence.weekday == 4 %} Mercredis {% elif permanence.weekday == 5 %} Jeudis {% elif permanence.weekday == 6 %} Vendredis {% elif permanence.weekday == 7 %} Samedis {% elif permanence.weekday == 1 %} Dimanches {% endif %}
+              {% else %}
+                {{ permanence.date|date:'l j F Y' }}
+              {% endif %} {{ permanence.start_time }}-{{ permanence.end_time }}<br>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row border-bottom title2">
+      <b>Nous contacter par mail</b>
+    </div>
+    <div class="space-row"></div>
+    <div class="row">
+      <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div{% if message.tags %} class="alert {{ message.tags }}" role='alert'{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form action="" method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form_errors form layout='table' %}
+            {% bootstrap_form form layout='table' %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary orange">
+                    {% bootstrap_icon "ok" %} Envoyer
+                </button>
+            {% endbuttons %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

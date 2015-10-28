@@ -2,7 +2,7 @@
 
 ##Requirements
 
-- python 3.x (tested with 3.4)
+- python 3.x (tested with 3.4, 3.5 recommended: https://docs.djangoproject.com/en/1.8/releases/1.8/#python-compatibility)
 - virtualenv
 
 ##Features

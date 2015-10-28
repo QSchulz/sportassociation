@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container-fluid">
+  <!-- DISPLAY THE NEWEST SPORT TOOK -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-xs-6 col-sm-4">
+        <div class="row center">
+          <a href="https://www.societegenerale.fr">
+            <img src="{% static 'img/societe-generale.jpg' %}" alt="societe generale"/>
+          </a>
+        </div>
+        <div class="center">
+          <strong>Société Générale</strong>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-xs-6 col-sm-4">
+        <div class="row center">
+          <a href="https://www.ville-belfort.fr">
+            <img src="{% static 'img/belfort.jpg' %}" alt="ville-belfort"/>
+          </a>
+        </div>
+        <div class="center">
+          <strong>Ville de Belfort</strong>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-xs-6 col-sm-4">
+        <div class="row center">
+          <a href="https://www.territoiredebelfort.fr">
+            <img src="{% static 'img/territoire_de_belfort.jpg' %}" alt="territoire de belfort"/>
+          </a>
+        </div>
+        <div class="center">
+          <strong>Territoire de Belfort</strong>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+        <div class="row center">
+          <a href="https://www.agglo-montbeliard.fr">
+            <img src="{% static 'img/pma.jpg' %}" alt="pays-montbeliard-agglomeration"/>
+          </a>
+        </div>
+        <div class="center">
+          <strong>Pays Montbéliard Agglomération</strong>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+        <div class="row center">
+          <a href="https://www.montbeliard.fr">
+            <img src="{% static 'img/montbeliard.jpg' %}" alt="montbeliard"/>
+          </a>
+        </div>
+        <div class="center">
+          <strong>Montbéliard</strong>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+        <div class="center">
+          <a href="https://www.casalsport.com">
+            <img src="{% static 'img/casalsport.jpg' %}" alt="casalsport"/>
+          </a>
+        </div>
+        <div class="center">
+          <strong>Casal Sport</strong>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+        <div class="center">
+          <a href="http://www.go-sport.com/magasins/belfort">
+            <img src="{% static 'img/gosport.jpg' %}" alt="go-sport"/>
+          </a>
+        </div>
+        <div class="center">
+          <strong>Go Sport</strong><br>
+          Notre partenariat vous permet de profiter d'une réduction de 10% sur présentation de votre carte de membre BDS.
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+        <div class="center">
+          <strong>Patinoire de Belfort</strong><br>
+          Notre partenariat vous permet de profiter d'un ticket gratuit tous les mardis soirs sur présentation de votre carte de membre BDS.
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+        <div class="center">
+          <strong>Piscines</strong><br>
+          Nous avons un nombre limité de tickets de piscine que nous pouvons vous offrir, n'hésitez pas à nous rendre visite pendant les permanences de bureau.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

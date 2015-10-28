@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row border-bottom title2">
+      <b>Contacts</b>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        <div clas="row">
+          <div>
+            Bureau des Sports de l'UTBM<br>
+            6 bd Anatole France<br>
+            90 000 Belfort<br>
+            {{ "bds@utbm.fr"|urlize }}<br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="space-row"></div>
+    <div class="row border-bottom title2">
+      <b>Contenu</b>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        <div clas="row">
+          <div>
+            L'ensemble du contenu de ce site (textes, photos, images, vidéos, fichiers) est protégé par le droit d'auteur sauf mention explicite.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="space-row"></div>
+    <div class="row border-bottom title2">
+      <b>Vie privée</b>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        <div clas="row">
+          <div>
+            Les informations recueillies font l’objet d’un traitement informatique.
+            Conformément à la loi « informatique et libertés » du 6 janvier 1978,
+            vous bénéficiez d’un droit d’accès et de rectification aux informations qui vous concernent.<br>
+            Si vous souhaitez exercer ce droit et obtenir communication des informations vous concernant,
+            veuillez vous adresser par mail à {{ "bds@utbm.fr"|urlize }} ou par courrier postal à BDS UTBM, 6 Boulevard Anatole France, 90000 Belfort.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

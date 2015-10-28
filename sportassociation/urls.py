@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from communication.views import HomeView
+from communication.views import (HomeView, AssociationView, InscriptionView,
+        ContactView, SponsorsView, ForumView, MentionsLegalesView)
 
 from . import settings
 from users.views import AdminUserCreateView
@@ -25,11 +26,19 @@ urlpatterns = [
     url(r'^admin/users/customuser/add/$', AdminUserCreateView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^forum/', ForumView.as_view(), name='forum'),
+    url(r'^association$', AssociationView.as_view(), name='association'),
+    url(r'^inscription$', InscriptionView.as_view(), name='inscription'),
+    url(r'^contact$', ContactView.as_view(), name='contact'),
+    url(r'^sponsors$', SponsorsView.as_view(), name='sponsors'),
+    url(r'^mentions-legales$', MentionsLegalesView.as_view(), name='mentions-legales'),
     url(r'^users/', include('users.urls', namespace='users')),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^communication/', include('communication.urls', namespace='communication')),
     url(r'^activities/', include('activities.urls', namespace='activities')),
     url(r'^sports/', include('sports.urls', namespace='sports')),
+    url(r'^captcha/', include('captcha.urls')),
+
 ]
 
 if settings.DEBUG:

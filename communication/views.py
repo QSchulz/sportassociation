@@ -2,10 +2,11 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic import (View, ListView)
 from django.utils.translation import ugettext as _
 from django.db.models import Q
+from .forms import ContactForm
 from activities.models import Activity
 from communication.models import (Article, Information, Weekmail)
 from sports.models import (Session, Match)
-from management.models import Weekday
+from management.models import (Weekday, MembershipType, Location)
 from datetime import (datetime, timedelta)
 from django.utils import timezone
 from django.http import (HttpResponseRedirect, HttpResponsePermanentRedirect,
@@ -13,6 +14,10 @@ from django.http import (HttpResponseRedirect, HttpResponsePermanentRedirect,
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import chain
+from smtplib import SMTPException
+from django.core.mail import send_mail
+from sportassociation import settings
+from django.contrib import messages
 
 class HomeView(View):
     template_name = 'communication/home.html'
@@ -50,6 +55,84 @@ class HomeView(View):
 
     def post(self, request):
         return HttpResponseRedirect('home')
+
+class AssociationView(View):
+    template_name = 'communication/association.html'
+
+    def get(self, request):
+        return render(request, self.template_name, None)
+
+    def post(self, request):
+        return HttpResponseRedirect('association')
+
+class InscriptionView(View):
+    template_name = 'communication/inscription.html'
+
+    def get(self, request):
+        membershipTypes = MembershipType.objects.filter(is_active=True)
+        return render(request, self.template_name, {'membershipTypes': membershipTypes,})
+
+    def post(self, request):
+        return HttpResponseRedirect('inscription')
+
+class SponsorsView(View):
+    template_name = 'communication/sponsors.html'
+
+    def get(self, request):
+        return render(request, self.template_name, None)
+
+    def post(self, request):
+        return HttpResponseRedirect('sponsors')
+
+class ContactView(View):
+    template_name = 'communication/contact.html'
+
+    def get(self, request):
+        locations = Location.objects.filter(permanences__isnull=False).distinct()
+        return render(request, self.template_name, {'form':ContactForm(),
+            'locations':locations,})
+
+    def post(self, request):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            mail = form.cleaned_data['mail']
+            name = form.cleaned_data['mail']
+            subject = form.cleaned_data['subject']
+            content = form.cleaned_data['content']
+            send_back = form.cleaned_data['send_back']
+
+            try:
+                send_mail(subject,
+                            content,
+                            mail,
+                            [settings.EMAIL_HOST_USER,])
+            except SMTPException:
+                messages.add_message(request, messages.ERROR, _('Failed to send \
+                                    mail.'))
+            if send_back:
+                try:
+                    send_mail(subject,
+                                content,
+                                settings.EMAIL_HOST_USER,
+                                [mail,],)
+                except SMTPException:
+                    messages.add_message(request, messages.ERROR, _('Failed to send \
+                                        mail.'))
+            messages.add_message(request, messages.SUCCESS, 'Le mail a bien été envoyé.')
+            return HttpResponseRedirect(reverse('contact'))
+        return render(request, self.template_name, {'form': form})
+
+class ForumView(View):
+    template_name = 'communication/forum.html'
+
+    def get(self, request):
+        return render(request, self.template_name, None)
+
+class MentionsLegalesView(View):
+    template_name = 'communication/mentions-legales.html'
+
+    def get(self, request):
+        return render(request, self.template_name, None)
 
 def returnDate(instance):
     if instance.__class__.__name__ == 'Weekmail':

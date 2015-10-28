@@ -15,6 +15,12 @@
 {% url 'activities:activities' as activities_url %}
 {% url 'activities:big-activities' as big_activities_url %}
 {% url 'sports:overview' as sports_url %}
+{% url 'association' as association_url %}
+{% url 'inscription' as inscription_url %}
+{% url 'contact' as contact_url %}
+{% url 'sponsors' as sponsors_url %}
+{% url 'mentions-legales' as mentions_url %}
+{% url 'forum' as forum_url %}
 
 <head>
     <title>BDS UTBM - Accueil</title>
@@ -70,15 +76,15 @@
                   <li {% if request.path == activities_url %}class="active"{% endif %}><a href="{% url 'activities:activities' %}">Événements</a></li>
                 </ul>
               </li>
-              <li><a href="#">Forum</a></li>
-              <li class="dropdown">
+              <li {% if request.path == forum_url %}class='active'{% endif %}><a href="{% url 'forum' %}">Forum</a></li>
+              <li class="dropdown {% if request.path == association_url or request.path == contact_url or request.path == sponsors_url or request.path == inscription_url %}active{% endif %}">
                 <a href="#" class="dropdown-toggle" data-toggle="mobileDropdown" role="button" aria-haspopup="true" aria-expanded="false">A propos <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Association</a></li>
-                  <li><a href="#">Partenaires</a></li>
-                  <li><a href="#">Bureau</a></li>
+                  <li {% if request.path == association_url %}class="active"{% endif %}><a href="{% url 'association' %}">Association</a></li>
+                  <li {% if request.path == sponsors_url %}class="active"{% endif %}><a href="{% url 'sponsors' %}">Partenaires</a></li>
+                  <li {% if request.path == inscription_url %}class="active"{% endif %}><a href="{% url 'inscription' %}">Inscription</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="#">Nous contacter</a></li>
+                  <li {% if request.path == contact_url %}class="active"{% endif %}><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
               </li>
             </ul>
@@ -118,9 +124,9 @@
         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 border-left">
           <p>
             <b><span class="glyphicon glyphicon-map-marker"></span> Nous rencontrer</b><br>
-            <a  href="#" class="orangeLink" >Belfort</a><br>
-            <a href="#" class="orangeLink">Sevenans</a><br>
-            <a href="#" class="orangeLink">Montbéliard</a>
+            <a  href="{% url 'contact' %}" class="orangeLink" >Belfort</a><br>
+            <a href="{% url 'contact' %}" class="orangeLink">Sevenans</a><br>
+            <a href="{% url 'contact' %}" class="orangeLink">Montbéliard</a>
           </p>
         </div>
         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 no-mobile-border mobile-align-right border-left">
@@ -136,13 +142,13 @@
         </div>
         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 border-left">
           <p><b>
-            <a class="blackLink" href="#">
+            <a class="blackLink" href="{% url 'mentions-legales' %}">
               <span class="glyphicon glyphicon-comment"></span> Mentions légales
             </a><br>
-            <a class="blackLink" href="#" target="_blank">
+            <a class="blackLink" href="{% static 'certificat.pdf' %}" target="_blank">
               <span class="glyphicon glyphicon-edit"></span> Fiche d'inscription
             </a><br>
-            <a class="blackLink" href="#">
+            <a class="blackLink" href="{% url 'contact' %}">
               <span class="glyphicon glyphicon-envelope"></span> Contact
             </a>
           </b></p>

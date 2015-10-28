@@ -4,3 +4,4 @@ django-bootstrap3==6.2.2
 Pillow==2.9.0
 psycopg2==2.6.1
 sorl-thumbnail==12.3
+django-simple-captcha==0.4.6

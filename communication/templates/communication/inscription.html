@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row border-bottom title2">
+      <b>Fiche d'inscription</b>
+    </div>
+    <a href='{% static "certificat.pdf" %}'>
+      Télécharger la fiche d'inscription.
+    </a>
+    <div class="space-row"></div>
+    <div class="row border-bottom title2">
+      <b>Tarifs</b>
+    </div>
+    <div class="row">
+      {% for type in membershipTypes %}
+      <div class="col-lg-4 col-md-6 col-xs-12 col-sm-6">
+        <div clas="row">
+          <div class="title orangeColor">{{ type.title }}</div>
+        </div>
+        <div class="row">
+          <div class="orangeBg article whiteColor">
+            <p>
+              Semestre : {{ type.semester_fee }}€<br>
+              Année : {{ type.year_fee }}€<br>
+              Description :
+              {% autoescape off %}
+              {{ type.description }}
+              {% endautoescape %}
+              </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

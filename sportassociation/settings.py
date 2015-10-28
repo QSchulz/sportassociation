@@ -42,6 +42,7 @@ if DEBUG:
 
 INSTALLED_APPS = (
     'bootstrap3',
+    'captcha',
     'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
