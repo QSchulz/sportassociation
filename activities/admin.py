@@ -20,7 +20,7 @@ class ItemInline(admin.StackedInline):
     model = Item
     extra = 0
 
-@admin.register(Parameter)
+#@admin.register(Parameter)
 class ParameterAdmin(admin.ModelAdmin):
     inlines = [ParameterInline, ItemInline]
     exclude = ('parent_parameter',)
@@ -28,4 +28,4 @@ class ParameterAdmin(admin.ModelAdmin):
     class Media:
         js = ('tinymce/tinymce.min.js', 'js/tinymce_4_config.js')
 
-admin.site.register(Participant)
+#admin.site.register(Participant)
