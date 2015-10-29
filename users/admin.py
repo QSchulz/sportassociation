@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import (User, Group)
 from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser
 from management.admin import MembershipInline
@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from PIL import Image, ImageDraw, ImageFont
 
 admin.site.unregister(User)
+admin.site.unregister(Group)
 
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
@@ -113,8 +114,3 @@ class CustomUserInline(admin.StackedInline):
     model = CustomUser
     can_delete = False
     exclude = ('position',)
-
-@admin.register(User)
-class UserAdmin(UserAdmin):
-    inlines = (CustomUserInline,)
-    can_delete = False
