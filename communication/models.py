@@ -36,16 +36,16 @@ class Weekmail(models.Model):
     Ordering by DESCending sent_date
     """
 
-    conclusion = models.TextField()
-    creation_date = models.DateTimeField(auto_now_add=True)
-    introduction = models.TextField()
-    modification_date = models.DateTimeField(auto_now=True)
-    sent_date = models.DateTimeField(default=None, null=True, blank=True,
+    conclusion = models.TextField(_('conclusion'))
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    introduction = models.TextField(_('introduction'))
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    sent_date = models.DateTimeField(_('sent date'), default=None, null=True, blank=True,
                 db_index=True)
-    subject = models.CharField(max_length=80, db_index=True)
+    subject = models.CharField(_('subject'), max_length=80, db_index=True)
 
     attached = GenericRelation(PublicFile, related_query_name='weekmails',
-                blank=True)
+                blank=True, verbose_name=_('attached public files'))
 
     class Meta:
         verbose_name = _('weekmail')
@@ -104,13 +104,13 @@ class Paragraph(models.Model):
     Ordering by ASCending index
     """
 
-    content = models.TextField()
-    creation_date = models.DateTimeField(auto_now_add=True)
-    modification_date = models.DateTimeField(auto_now=True)
-    index = models.PositiveSmallIntegerField()
-    title = models.CharField(max_length=50)
+    content = models.TextField(_('content'))
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    index = models.PositiveSmallIntegerField(_('index'))
+    title = models.CharField(_('title'), max_length=50)
 
-    weekmail = models.ForeignKey(Weekmail, related_name='paragraphs')
+    weekmail = models.ForeignKey(Weekmail, related_name='paragraphs', verbose_name=_('weekmail'))
 
     class Meta:
         verbose_name = _('paragraph')
@@ -152,21 +152,21 @@ class Article(models.Model):
     Ordering by DESCending publication_date.
     """
 
-    content = models.TextField()
-    cover = ImageField(upload_to='public/covers/articles/', null=True,
+    content = models.TextField(_('content'))
+    cover = ImageField(_('cover'), upload_to='public/covers/articles/', null=True,
             blank=True)
-    creation_date = models.DateTimeField(auto_now_add=True)
-    is_frontpage = models.BooleanField(default=False, db_index=True)
-    modification_date = models.DateTimeField(auto_now=True)
-    publication_date = models.DateTimeField(db_index=True, null=True, blank=True)
-    slug = models.SlugField()
-    summary = models.CharField(max_length=180, null=True, blank=True)
-    title = models.CharField(max_length=50, db_index=True)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    is_frontpage = models.BooleanField(_('is displayed on front page?'), default=False, db_index=True)
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    publication_date = models.DateTimeField(_('publication date'), db_index=True, null=True, blank=True)
+    slug = models.SlugField(_('slug'))
+    summary = models.CharField(_('summary'), max_length=180, null=True, blank=True)
+    title = models.CharField(_('title'), max_length=50, db_index=True)
 
-    attached_files = GenericRelation(ProtectedFile, blank=True)
-    attached_photos = GenericRelation(ProtectedImage, blank=True)
+    attached_files = GenericRelation(ProtectedFile, blank=True, verbose_name=_('attached protected files'))
+    attached_photos = GenericRelation(ProtectedImage, blank=True, verbose_name=_('attached protected images'))
     author = models.ForeignKey(CustomUser, related_name='authored_articles',
-                null=True, blank=True, on_delete=models.SET_NULL, default=None)
+                null=True, blank=True, on_delete=models.SET_NULL, default=None, verbose_name=_('author'))
 
     class Meta:
         verbose_name = _('article')
@@ -201,12 +201,12 @@ class Information(models.Model):
         - at least the title or the content has to be set.
     """
 
-    content = models.TextField(blank=True)
-    end_date = models.DateTimeField(null=True, blank=True)
-    is_important = models.BooleanField(default=False)
-    is_published = models.BooleanField(default=False, db_index=True)
-    start_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
-    title = models.CharField(max_length=50, blank=True)
+    content = models.TextField(_('content'), blank=True)
+    end_date = models.DateTimeField(_('end date'), null=True, blank=True)
+    is_important = models.BooleanField(_('is important?'), default=False)
+    is_published = models.BooleanField(_('is published?'), default=False, db_index=True)
+    start_date = models.DateTimeField(_('start date'), default=timezone.now, blank=True, null=True)
+    title = models.CharField(_('title'), max_length=50, blank=True)
 
     class Meta:
         verbose_name = _('information')

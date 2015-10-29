@@ -54,27 +54,27 @@ class Activity(models.Model):
         - start_date cannot be after end_date
     """
 
-    content = models.TextField()
-    cover = ImageField(upload_to='public/covers/activities/', null=True,
+    content = models.TextField(_('content'))
+    cover = ImageField(_('cover'), upload_to='public/covers/activities/', null=True,
             blank=True)
-    creation_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField()
-    is_big_activity = models.BooleanField(default=False)
-    is_frontpage = models.BooleanField(default=False, db_index=True)
-    is_member_only = models.BooleanField(default=False)
-    modification_date = models.DateTimeField(auto_now=True)
-    publication_date = models.DateTimeField(db_index=True, null=True, blank=True)
-    slug = models.SlugField()
-    start_date = models.DateTimeField()
-    summary = models.CharField(max_length=180, blank=True)
-    title = models.CharField(max_length=50, db_index=True)
-    website = models.URLField(blank=True)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    end_date = models.DateTimeField(_('end date'))
+    is_big_activity = models.BooleanField(_('is big activity?'), default=False)
+    is_frontpage = models.BooleanField(_('is displayed on front page?'), default=False, db_index=True)
+    is_member_only = models.BooleanField(_('is reserved to members?'), default=False)
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    publication_date = models.DateTimeField(_('publication date'), db_index=True, null=True, blank=True)
+    slug = models.SlugField(_('slug'))
+    start_date = models.DateTimeField(_('start date'))
+    summary = models.CharField(_('summary'), max_length=180, blank=True)
+    title = models.CharField(_('title'), max_length=50, db_index=True)
+    website = models.URLField(_('website'), blank=True)
 
-    attached_admin_files = GenericRelation(AdminFile, blank=True)
-    attached_files = GenericRelation(ProtectedFile, blank=True)
-    attached_photos = GenericRelation(ProtectedImage, blank=True)
+    attached_admin_files = GenericRelation(AdminFile, blank=True, verbose_name=_('attached admin files'))
+    attached_files = GenericRelation(ProtectedFile, blank=True, verbose_name=_('attached public files'))
+    attached_photos = GenericRelation(ProtectedImage, blank=True, verbose_name=_('attached public images'))
     location = models.ForeignKey(Location, related_name='activities', null=True,
-                on_delete=models.SET_NULL, blank=True)
+                on_delete=models.SET_NULL, blank=True, verbose_name=_('location'))
 
     class Meta:
         verbose_name = _('activity')
@@ -132,24 +132,24 @@ class Parameter(models.Model):
     Ordering by ASCending creation_date.
     """
 
-    creation_date = models.DateTimeField(auto_now_add=True)
-    default_price = models.DecimalField(max_digits=5, decimal_places=2, default=0,
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    default_price = models.DecimalField(_('default price'), max_digits=5, decimal_places=2, default=0,
                     validators = [MinValueValidator(0),])
-    description = models.TextField(blank=True)
-    is_mandatory = models.BooleanField(default=False)
-    is_member_only = models.BooleanField(default=False)
-    is_published = models.BooleanField(default=False)
-    max_bought_items = models.PositiveSmallIntegerField(default=None, blank=True,
+    description = models.TextField(_('description'), blank=True)
+    is_mandatory = models.BooleanField(_('is mandatory?'), default=False)
+    is_member_only = models.BooleanField(_('is reserved to members?'), default=False)
+    is_published = models.BooleanField(_('is published?'), default=False)
+    max_bought_items = models.PositiveSmallIntegerField(_('max bought items'), default=None, blank=True,
                         null=True)
-    member_price = models.DecimalField(max_digits=5, decimal_places=2, default=0,
+    member_price = models.DecimalField(_('member price'), max_digits=5, decimal_places=2, default=0,
                     validators = [MinValueValidator(0),])
-    modification_date = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=50)
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    name = models.CharField(_('name'), max_length=50)
 
     activity = models.ForeignKey(Activity, related_name='parameters', blank=True,
-                null=True)
+                null=True, verbose_name=_('activity'))
     parent_parameter = models.ForeignKey('self', null=True, blank=True,
-                        related_name='associated_parameters')
+                        related_name='associated_parameters', verbose_name=_('parent parameter'))
 
     class Meta:
         verbose_name = _('parameter')
@@ -189,18 +189,18 @@ class Item(models.Model):
     Ordering by ASCending name.
     """
 
-    creation_date = models.DateTimeField(auto_now_add=True)
-    default_price = models.DecimalField(max_digits=5, decimal_places=2, default=0,
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    default_price = models.DecimalField(_('default price'), max_digits=5, decimal_places=2, default=0,
                     validators = [MinValueValidator(0),])
-    description = models.TextField(blank=True)
-    max_bought_items = models.PositiveSmallIntegerField(default=None, null=True,
+    description = models.TextField(_('description'), blank=True)
+    max_bought_items = models.PositiveSmallIntegerField(_('max bought items'), default=None, null=True,
                         blank=True)
-    member_price = models.DecimalField(max_digits=5, decimal_places=2, default=0,
+    member_price = models.DecimalField(_('member price'), max_digits=5, decimal_places=2, default=0,
                     validators = [MinValueValidator(0),])
-    modification_date = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=50)
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    name = models.CharField(_('name'), max_length=50)
 
-    parameter = models.ForeignKey(Parameter, related_name='items')
+    parameter = models.ForeignKey(Parameter, related_name='items', verbose_name=_('parameter'))
 
     class Meta:
         verbose_name = _('item')
@@ -244,17 +244,17 @@ class Participant(models.Model):
         - maximum number of participants for a parameter cannot be exceeded.
     """
 
-    cheque_bank = models.CharField(max_length=30, blank=True)
-    creation_date = models.DateTimeField(auto_now_add=True)
-    modification_date = models.DateTimeField(auto_now=True)
-    payment_mean = models.CharField(max_length=6, choices=PAYMENT_MEANS)
-    unregistered_user = models.CharField(max_length=30, null=True, blank=True)
+    cheque_bank = models.CharField(_('bank of the cheque'), max_length=30, blank=True)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    payment_mean = models.CharField(_('payment mean'), max_length=6, choices=PAYMENT_MEANS)
+    unregistered_user = models.CharField(_('unregistered user'), max_length=30, null=True, blank=True)
 
     cash_register = models.ForeignKey(CashRegister, related_name='bought_items',
-                    on_delete=models.SET_NULL, null=True)
-    item = models.ForeignKey(Item, related_name='participants')
+                    on_delete=models.SET_NULL, null=True, verbose_name=_('cash register'))
+    item = models.ForeignKey(Item, related_name='participants', verbose_name=_('item'))
     registered_user = models.ForeignKey(CustomUser, null=True, blank=True,
-                        related_name='participations')
+                        related_name='participations', verbose_name=_('registered user'))
 
     class Meta:
         verbose_name = _('participant')

@@ -119,13 +119,13 @@ class Location(models.Model):
         - at least city should be set if latitude and longitude are omitted.
     """
 
-    address = models.CharField(max_length=100, blank=True)
-    city = models.CharField(max_length=30, blank=True)
-    latitude = models.FloatField(default=None, null=True, blank=True,
+    address = models.CharField(_('address'), max_length=100, blank=True)
+    city = models.CharField(_('city'), max_length=30, blank=True)
+    latitude = models.FloatField(_('latitude'), default=None, null=True, blank=True,
                 validators = [MaxValueValidator(90), MinValueValidator(0)])
-    longitude = models.FloatField(default=None, null=True, blank=True,
+    longitude = models.FloatField(_('longitude'), default=None, null=True, blank=True,
                 validators = [MaxValueValidator(180), MinValueValidator(-180)])
-    name = models.CharField(max_length=50)
+    name = models.CharField(_('name'), max_length=50)
 
     class Meta:
         verbose_name = _('location')
@@ -172,16 +172,18 @@ class Permanence(models.Model):
         - start_time cannot be after end_date.
     """
 
-    date = models.DateField(null=True, blank=True)
-    end_time = models.TimeField()
-    start_time = models.TimeField()
-    weekday = models.PositiveSmallIntegerField(choices=Weekday.WEEKDAYS,
+    date = models.DateField(_('date'), null=True, blank=True)
+    end_time = models.TimeField(_('end time'))
+    start_time = models.TimeField(_('start time'))
+    weekday = models.PositiveSmallIntegerField(_('weekday'), choices=Weekday.WEEKDAYS,
                 null=True, blank=True)
 
     related_activities = models.ManyToManyField('activities.Activity',
                             related_name='permanences', blank=True,
-                            limit_choices_to={'start_date__gt': timezone.now})
-    location = models.ForeignKey(Location, related_name='permanences')
+                            limit_choices_to={'start_date__gt': timezone.now},
+                            verbose_name=_('related activities'))
+    location = models.ForeignKey(Location, related_name='permanences',
+                verbose_name=_('location'))
 
     class Meta:
         verbose_name = _('permanence')
@@ -215,9 +217,9 @@ class Equipment(models.Model):
     Ordering by ASCending name.
     """
 
-    description = models.TextField(blank=True)
-    name = models.CharField(max_length=30, db_index=True)
-    quantity = models.PositiveSmallIntegerField(validators=[MinValueValidator(1),])
+    description = models.TextField(_('description'), blank=True)
+    name = models.CharField(_('name'), max_length=30, db_index=True)
+    quantity = models.PositiveSmallIntegerField(_('quantity'), validators=[MinValueValidator(1),])
 
     class Meta:
         verbose_name = _('equipment')
@@ -251,14 +253,14 @@ class Lending(models.Model):
         - lent quantity cannot be superior to available stock for the equipment.
     """
 
-    deposit = models.PositiveSmallIntegerField()
-    end_date = models.DateField()
-    quantity = models.PositiveSmallIntegerField(validators=[MinValueValidator(1),])
-    returned = models.BooleanField(default=False)
-    start_date = models.DateField(default=timezone.now)
+    deposit = models.PositiveSmallIntegerField(_('deposit'))
+    end_date = models.DateField(_('end date'))
+    quantity = models.PositiveSmallIntegerField(_('quantity'), validators=[MinValueValidator(1),])
+    returned = models.BooleanField(_('is returned?'), default=False)
+    start_date = models.DateField(_('start date'), default=timezone.now)
 
-    borrower = models.ForeignKey(CustomUser, related_name='lendings')
-    equipment = models.ForeignKey(Equipment, related_name='lendings')
+    borrower = models.ForeignKey(CustomUser, related_name='lendings', verbose_name=_('borrower'))
+    equipment = models.ForeignKey(Equipment, related_name='lendings', verbose_name=_('equipment'))
 
     class Meta:
         verbose_name = _('lending')
@@ -297,8 +299,8 @@ class Position(models.Model):
         - users: several users occupying this position.
     """
 
-    description = models.TextField()
-    title = models.CharField(max_length=30)
+    description = models.TextField(_('description'))
+    title = models.CharField(_('title'), max_length=30)
 
     class Meta:
         verbose_name = _('position')
@@ -334,12 +336,12 @@ class MembershipType(models.Model):
     Ordering by ASCending semester_fee.
     """
 
-    description = models.TextField()
-    is_active = models.BooleanField(default=True)
-    semester_fee = models.DecimalField(max_digits=6, decimal_places=2,
+    description = models.TextField(_('description'))
+    is_active = models.BooleanField(_('is active?'), default=True)
+    semester_fee = models.DecimalField(_('semester fee'), max_digits=6, decimal_places=2,
                     validators=[MinValueValidator(0),])
-    title = models.CharField(max_length=30)
-    year_fee = models.DecimalField(max_digits=6, decimal_places=2,
+    title = models.CharField(_('title'), max_length=30)
+    year_fee = models.DecimalField(_('year fee'), max_digits=6, decimal_places=2,
                 validators=[MinValueValidator(0),])
 
     class Meta:
@@ -381,21 +383,21 @@ class Membership(models.Model):
         - certificate has to be issued at maximum CERTIFICATE_VALIDITY +
             DELTA_CERTIFICATE_VALIDITY weeks before expiration_date.
     """
-    certificate = ImageField(upload_to='admin/certificates', null=True,
+    certificate = ImageField(_('certificate copy'), upload_to='admin/certificates', null=True,
                     blank=True)
-    certificate_date = models.DateField()
-    cheque_bank = models.CharField(max_length=30, blank=True)
-    creation_date = models.DateTimeField(auto_now_add=True)
-    expiration_date = models.DateField()
-    membership_copy = ImageField(upload_to='admin/memberships')
-    payment_mean = models.CharField(max_length=6, choices=PAYMENT_MEANS)
+    certificate_date = models.DateField(_('certificate date'))
+    cheque_bank = models.CharField(_('bank of the cheque'), max_length=30, blank=True)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    expiration_date = models.DateField(_('expiration date'))
+    membership_copy = ImageField(_('membership copy'), upload_to='admin/memberships')
+    payment_mean = models.CharField(_('payment mean'), max_length=6, choices=PAYMENT_MEANS)
 
-    member = models.ForeignKey(CustomUser, related_name='membership_history')
+    member = models.ForeignKey(CustomUser, related_name='membership_history', verbose_name=_('member'))
     membership_type = models.ForeignKey(MembershipType, related_name='memberships',
                         limit_choices_to={'is_active': True}, null=True,
-                        on_delete=models.SET_NULL)
+                        on_delete=models.SET_NULL, verbose_name=_('membership type'))
     cash_register = models.ForeignKey(CashRegister, related_name='memberships',
-                    on_delete=models.SET_NULL, null=True)
+                    on_delete=models.SET_NULL, null=True, verbose_name=_('cash register'))
 
     class Meta:
         verbose_name = _('membership')
@@ -446,14 +448,16 @@ class PublicFile(models.Model):
             directory = 'weekmail/%s/' % (instance.object_id)
         return 'public/%s%s' % (directory, filename)
 
-    creation_date = models.DateTimeField(auto_now_add=True)
-    file = models.FileField(upload_to=custom_path)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    file = models.FileField(_('file'), upload_to=custom_path)
 
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType, verbose_name=_('content type'))
+    object_id = models.PositiveIntegerField(verbose_name=_('object id'))
     content_object = GenericForeignKey('content_type', 'object_id')
 
     class Meta:
+        verbose_name = _('public file')
+        verbose_name_plural = _('public files')
         ordering = ['-creation_date']
 
 
@@ -476,14 +480,16 @@ class PublicImage(models.Model):
         directory = ''
         return 'public/images/%s%s' % (directory, filename)
 
-    creation_date = models.DateTimeField(auto_now_add=True)
-    file = ImageField(upload_to=custom_path)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    file = models.FileField(_('file'), upload_to=custom_path)
 
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType, verbose_name=_('content type'))
+    object_id = models.PositiveIntegerField(verbose_name=_('object id'))
     content_object = GenericForeignKey('content_type', 'object_id')
 
     class Meta:
+        verbose_name = _('public image')
+        verbose_name_plural = _('public images')
         ordering = ['-creation_date']
 
 
@@ -512,14 +518,16 @@ class ProtectedFile(models.Model):
             directory = 'articles/%s/' % (instance.object_id)
         return 'protected/%s%s' % (directory, filename)
 
-    creation_date = models.DateTimeField(auto_now_add=True)
-    file = models.FileField(upload_to=custom_path)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    file = models.FileField(_('file'), upload_to=custom_path)
 
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType, verbose_name=_('content type'))
+    object_id = models.PositiveIntegerField(verbose_name=_('object id'))
     content_object = GenericForeignKey('content_type', 'object_id')
 
     class Meta:
+        verbose_name = _('protected file')
+        verbose_name_plural = _('protected files')
         ordering = ['-creation_date']
 
 
@@ -551,14 +559,16 @@ class ProtectedImage(models.Model):
             directory = 'matches/%s/' % (instance.object_id)
         return 'protected/%s%s' % (directory, filename)
 
-    creation_date = models.DateTimeField(auto_now_add=True)
-    file = ImageField(upload_to=custom_path)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    file = models.FileField(_('file'), upload_to=custom_path)
 
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType, verbose_name=_('content type'))
+    object_id = models.PositiveIntegerField(verbose_name=_('object id'))
     content_object = GenericForeignKey('content_type', 'object_id')
 
     class Meta:
+        verbose_name = _('protected image')
+        verbose_name_plural = _('protected images')
         ordering = ['-creation_date']
 
 
@@ -587,14 +597,16 @@ class AdminFile(models.Model):
             directory = 'finances/%s/' % (instance.object_id)
         return 'admin/%s%s' % (directory, filename)
 
-    creation_date = models.DateTimeField(auto_now_add=True)
-    file = models.FileField(upload_to=custom_path)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    file = models.FileField(_('file'), upload_to=custom_path)
 
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType, verbose_name=_('content type'))
+    object_id = models.PositiveIntegerField(verbose_name=_('object id'))
     content_object = GenericForeignKey('content_type', 'object_id')
 
     class Meta:
+        verbose_name = _('admin file')
+        verbose_name_plural = _('admin files')
         ordering = ['-creation_date']
 
 
@@ -617,12 +629,14 @@ class AdminImage(models.Model):
         directory = ''
         return 'admin/%s%s' % (directory, filename)
 
-    creation_date = models.DateTimeField(auto_now_add=True)
-    file = ImageField(upload_to=custom_path)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    file = models.FileField(_('file'), upload_to=custom_path)
 
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType, verbose_name=_('content type'))
+    object_id = models.PositiveIntegerField(verbose_name=_('object id'))
     content_object = GenericForeignKey('content_type', 'object_id')
 
     class Meta:
+        verbose_name = _('admin image')
+        verbose_name_plural = _('admin images')
         ordering = ['-creation_date']

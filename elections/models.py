@@ -28,12 +28,12 @@ class Election(models.Model):
         - start_date cannot be after end_date
     """
 
-    description = models.TextField()
-    end_date = models.DateTimeField()
-    is_published = models.BooleanField(default=False)
-    slug = models.SlugField()
-    start_date = models.DateTimeField()
-    title = models.CharField(max_length=50)
+    description = models.TextField(_('description'))
+    end_date = models.DateTimeField(_('end date'))
+    is_published = models.BooleanField(_('is published?'), default=False)
+    slug = models.SlugField(_('slug'))
+    start_date = models.DateTimeField(_('start date'))
+    title = models.CharField(_('title'), max_length=50)
 
     class Meta:
         verbose_name = _('election')
@@ -71,13 +71,13 @@ class VacantPosition(models.Model):
     """
 
     elected_number = models.PositiveSmallIntegerField(default=1,
-                        validators=[MinValueValidator(1),])
+                        validators=[MinValueValidator(1),], verbose_name=_('number of elected candidates'))
 
     election = models.ForeignKey(Election, related_name='vacant_positions',
-                limit_choices_to={'end_date__gt': timezone.now})
-    position = models.ForeignKey(Position, related_name='vacant_positions')
+                limit_choices_to={'end_date__gt': timezone.now}, verbose_name=_('election'))
+    position = models.ForeignKey(Position, related_name='vacant_positions', verbose_name=_('position'))
     staying_staff = models.ManyToManyField(CustomUser,
-                    related_name='kept_positions')
+                    related_name='kept_positions', verbose_name=_('current staff keeping position'))
 
     class Meta:
         verbose_name = _('vacant position')
@@ -101,11 +101,11 @@ class Candidature(models.Model):
         - vacant_position: vacant position associated to this candidature.
         - votes: several votes associated to this candidature.
     """
-    speech = models.TextField(blank=True)
+    speech = models.TextField(_('speech'), blank=True)
 
-    candidate = models.ForeignKey(CustomUser, related_name='candidatures')
+    candidate = models.ForeignKey(CustomUser, related_name='candidatures', verbose_name=_('candidate'))
     vacant_position = models.ForeignKey(VacantPosition,
-                        related_name='candidatures',
+                        related_name='candidatures', verbose_name=_('vacant position'),
                         limit_choices_to={'election__end_date__gt': timezone.now})
 
     class Meta:
@@ -136,10 +136,10 @@ class Vote(models.Model):
             to this candidature.
     """
 
-    creation_date = models.DateTimeField(auto_now_add=True)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
 
-    candidature = models.ForeignKey(Candidature, related_name='votes')
-    voter = models.ForeignKey(CustomUser, related_name='votes')
+    candidature = models.ForeignKey(Candidature, related_name='votes', verbose_name=_('candidature'))
+    voter = models.ForeignKey(CustomUser, related_name='votes', verbose_name=_('voter'))
 
     class Meta:
         verbose_name = _('vote')

@@ -127,32 +127,32 @@ class CustomUser(models.Model):
             fees paid for the ongoing semester/year).
     """
 
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, verbose_name=_('user'))
 
-    birthdate = models.DateField(null=True, blank=True)
-    competition_license = models.CharField(max_length=15, blank=True)
-    competition_expiration = models.DateField(null=True, blank=True)
-    diffusion_authorisation = models.BooleanField(default=True)
-    gender = models.CharField(max_length=1, choices=GENDERS, blank=True)
-    global_scope = models.PositiveSmallIntegerField(choices=SCOPES, default=1,
+    birthdate = models.DateField(_('birthdate'), null=True, blank=True)
+    competition_license = models.CharField(_('competition license'), max_length=15, blank=True)
+    competition_expiration = models.DateField(_('expiration date of competition license'), null=True, blank=True)
+    diffusion_authorisation = models.BooleanField(_('does authorize diffusion?'), default=True)
+    gender = models.CharField(_('gender'), max_length=1, choices=GENDERS, blank=True)
+    global_scope = models.PositiveSmallIntegerField(_('global scope'), choices=SCOPES, default=1,
                     validators = [MaxValueValidator(SCOPE_MANAGER),
                                 MinValueValidator(SCOPE_REGISTERED)])
-    id_photo = ImageField(upload_to='protected/users/')
-    mail_scope = models.PositiveSmallIntegerField(choices=SCOPES, default=1,
+    id_photo = ImageField(_('identity photo'), upload_to='protected/users/')
+    mail_scope = models.PositiveSmallIntegerField(_('mail scope'), choices=SCOPES, default=1,
                     validators = [MinValueValidator(SCOPE_REGISTERED),])
-    modification_date = models.DateTimeField(auto_now=True)
-    nickname = models.CharField(max_length=20, blank=True)
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    nickname = models.CharField(_('nickname'), max_length=20, blank=True)
     phone_regex = RegexValidator(regex = r'^\+?1?\d{9,15}$',
                     message = "Phone number must be entered in the format: \
                     '+999999999'. Up to 15 digits allowed.")
-    phone = models.CharField(max_length=16, validators = [phone_regex,],
+    phone = models.CharField(_('phone'), max_length=16, validators = [phone_regex,],
             blank=True)
-    phone_scope = models.PositiveSmallIntegerField(choices=SCOPES, default=1,
+    phone_scope = models.PositiveSmallIntegerField(_('phone scope'), choices=SCOPES, default=1,
                     validators = [MinValueValidator(SCOPE_REGISTERED),])
-    size = models.CharField(max_length=2, choices=SHIRT_SIZES, blank=True)
+    size = models.CharField(_('size'), max_length=2, choices=SHIRT_SIZES, blank=True)
 
     position = models.ForeignKey('management.Position', related_name='users',
-                null=True, blank=True, on_delete=models.SET_NULL)
+                null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('position'))
 
     class Meta:
         verbose_name = _('user')

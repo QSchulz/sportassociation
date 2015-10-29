@@ -35,19 +35,19 @@ class Sport(models.Model):
     Ordering by ASCending name.
     """
 
-    creation_date = models.DateTimeField(auto_now_add=True)
-    description = models.TextField(blank=True)
-    is_open = models.BooleanField(default=True)
-    mailing_list = models.EmailField(blank=True)
-    modification_date = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=50)
-    slug = models.SlugField()
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    description = models.TextField(_('description'), blank=True)
+    is_open = models.BooleanField(_('is open?'), default=True)
+    mailing_list = models.EmailField(_('mailing list'), blank=True)
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    name = models.CharField(_('name'), max_length=50)
+    slug = models.SlugField(_('slug'))
 
     competitors = models.ManyToManyField(CustomUser, blank=True,
-                    related_name='competition_sports')
-    managers = models.ManyToManyField(CustomUser, related_name='managed_sports')
+                    related_name='competition_sports', verbose_name=_('competitors'))
+    managers = models.ManyToManyField(CustomUser, related_name='managed_sports', verbose_name=_('managers'))
     participants = models.ManyToManyField(CustomUser, blank=True,
-                    related_name='subscribed_sports')
+                    related_name='subscribed_sports', verbose_name=_('participants'))
 
     class Meta:
         verbose_name = _('sport')
@@ -81,19 +81,20 @@ class Match(models.Model):
     Ordering by DESCending date.
     """
 
-    date = models.DateTimeField()
-    description = models.TextField()
-    name = models.CharField(max_length=50)
-    opponent = models.CharField(max_length=30, blank=True)
-    result = models.CharField(max_length=50, blank=True)
+    date = models.DateTimeField(_('date'))
+    description = models.TextField(_('description'))
+    name = models.CharField(_('name'), max_length=50)
+    opponent = models.CharField(_('opponent'), max_length=30, blank=True)
+    result = models.CharField(_('result'), max_length=50, blank=True)
 
-    attached_photos = GenericRelation(ProtectedImage, blank=True)
+    attached_photos = GenericRelation(ProtectedImage, blank=True,
+                        verbose_name=_('attached protected files'))
     location = models.ForeignKey(Location, related_name='matches', null=True,
-                blank=True, on_delete=models.SET_NULL)
+                blank=True, on_delete=models.SET_NULL, verbose_name=_('location'))
     report = models.ForeignKey(Article, related_name="matches", null=True,
-                blank=True, on_delete=models.SET_NULL)
+                blank=True, on_delete=models.SET_NULL, verbose_name=_('report'))
     sport = models.ForeignKey(Sport, related_name='matches', null=True,
-            blank=True, on_delete=models.SET_NULL)
+            blank=True, on_delete=models.SET_NULL, verbose_name=_('sport'))
 
     class Meta:
         verbose_name = _('match')
@@ -130,22 +131,22 @@ class Session(models.Model):
         - only a member registered as a manager of the sport can manage the session.
     """
 
-    date = models.DateField(default=None, null=True, blank=True)
-    end_time = models.TimeField()
-    start_time = models.TimeField()
-    weekday = models.PositiveSmallIntegerField(choices=Weekday.WEEKDAYS, null=True,
+    date = models.DateField(_('date'), default=None, null=True, blank=True)
+    end_time = models.TimeField(_('end time'))
+    start_time = models.TimeField(_('start time'))
+    weekday = models.PositiveSmallIntegerField(_('weekday'), choices=Weekday.WEEKDAYS, null=True,
                 blank=True)
 
     #def _limit_choices_manager():
     #    return models.Q(managed_sports__isnull=False)
 
     location = models.ForeignKey(Location, related_name='sessions',
-                on_delete=models.SET_NULL, null=True)
+                on_delete=models.SET_NULL, null=True, verbose_name=_('location'))
     manager = models.ForeignKey(CustomUser, related_name='managed_sessions',
-                on_delete=models.SET_NULL, null=True)#,
+                on_delete=models.SET_NULL, null=True, verbose_name=_('manager'))#,
                 #limit_choices_to=_limit_choices_manager)
     sport = models.ForeignKey(Sport, related_name='sessions',
-            limit_choices_to={'is_open': True})
+            limit_choices_to={'is_open': True}, verbose_name=_('sport'))
 
     class Meta:
         verbose_name = _('session')
@@ -189,12 +190,12 @@ class CancelledSession(models.Model):
         - else, dates have to match.
     """
 
-    cancellation_date = models.DateField(default=timezone.now)
-    description = models.TextField(blank=True)
-    title = models.CharField(max_length=50)
+    cancellation_date = models.DateField(_('cancellation date'), default=timezone.now)
+    description = models.TextField(_('description'), blank=True)
+    title = models.CharField(_('title'), max_length=50)
 
     cancelled_session = models.ForeignKey(Session,
-                        related_name='cancelled_sessions')
+                        related_name='cancelled_sessions', verbose_name=_('cancelled session'))
 
     class Meta:
         verbose_name = _('cancelled session')

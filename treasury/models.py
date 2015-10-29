@@ -52,19 +52,19 @@ class FinancialOperation(models.Model):
         - unregistered_user and registered_user cannot both be set.
     """
 
-    amount = models.DecimalField(max_digits=8, decimal_places=2)
-    creation_date = models.DateTimeField(auto_now_add=True)
-    description = models.TextField()
-    modification_date = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=50)
-    processed_date = models.DateField(null=True, blank=True)
-    unregistered_user = models.CharField(max_length=50, blank=True)
+    amount = models.DecimalField(_('amount'), max_digits=8, decimal_places=2)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    description = models.TextField(_('description'))
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    name = models.CharField(_('name'), max_length=50)
+    processed_date = models.DateField(_('processed date'), null=True, blank=True)
+    unregistered_user = models.CharField(_('unregistered user'), max_length=50, blank=True)
 
-    files = GenericRelation('management.AdminFile', blank=True)
+    files = GenericRelation('management.AdminFile', blank=True, verbose_name=_('attached private files'))
     registered_user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL,
-                        related_name='financial_operations', null=True, blank=True)
+                        related_name='financial_operations', null=True, blank=True, verbose_name=_('registered user'))
     related_activity = models.ForeignKey('activities.Activity', null=True,
-                        related_name='financial_operations', blank=True)
+                        related_name='financial_operations', blank=True, verbose_name=_('related activity'))
 
     class Meta:
         verbose_name = _('financial operation')
@@ -108,9 +108,9 @@ class CashRegister(models.Model):
     Ordering by ASCending creation_date.
     """
 
-    creation_date = models.DateTimeField(auto_now_add=True)
-    modification_date = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=50)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    name = models.CharField(_('name'), max_length=50)
 
     class Meta:
         verbose_name = _('cash register')
@@ -148,14 +148,14 @@ class TreasuryOperation(models.Model):
     Ordering by DESCending creation_date.
     """
 
-    amount = models.DecimalField(max_digits=8, decimal_places=2)
-    creation_date = models.DateTimeField(auto_now_add=True)
-    description = models.TextField(blank=True)
-    modification_date = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=50)
+    amount = models.DecimalField(_('amount'), max_digits=8, decimal_places=2)
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    description = models.TextField(_('description'), blank=True)
+    modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+    name = models.CharField(_('name'), max_length=50)
 
     cash_register = models.ForeignKey(CashRegister,
-                    related_name='treasury_operations')
+                    related_name='treasury_operations', verbose_name=_('cash register'))
 
     class Meta:
         verbose_name = _('treasury operation')

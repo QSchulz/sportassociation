@@ -1,0 +1,1000 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-29 11:27+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: activities/models.py:57 communication/models.py:107
+#: communication/models.py:155 communication/models.py:204
+msgid "content"
+msgstr "contenu"
+
+#: activities/models.py:58 communication/models.py:156
+msgid "cover"
+msgstr "photo de couverture"
+
+#: activities/models.py:60 activities/models.py:135 activities/models.py:192
+#: activities/models.py:248 communication/models.py:40
+#: communication/models.py:158 elections/models.py:139
+#: management/models.py:390 management/models.py:451 management/models.py:483
+#: management/models.py:521 management/models.py:562 management/models.py:600
+#: management/models.py:632 sports/models.py:38 treasury/models.py:56
+#: treasury/models.py:111 treasury/models.py:152
+msgid "creation date"
+msgstr "date de création"
+
+#: activities/models.py:61 communication/models.py:205 elections/models.py:32
+#: management/models.py:257
+msgid "end date"
+msgstr "date de fin"
+
+#: activities/models.py:62
+#, fuzzy
+#| msgid "activity"
+msgid "is big activity?"
+msgstr "grande activité ?"
+
+#: activities/models.py:63 communication/models.py:159
+msgid "is displayed on front page?"
+msgstr "affiché sur la page d'accueil ?"
+
+#: activities/models.py:64 activities/models.py:140
+msgid "is reserved to members?"
+msgstr "reservé aux membres ?"
+
+#: activities/models.py:65 activities/models.py:146 activities/models.py:200
+#: activities/models.py:249 communication/models.py:109
+#: communication/models.py:160 sports/models.py:42 treasury/models.py:58
+#: treasury/models.py:112 treasury/models.py:154 users/models.py:143
+msgid "modification date"
+msgstr "date de modification"
+
+#: activities/models.py:66 communication/models.py:161
+#, fuzzy
+#| msgid "public image"
+msgid "publication date"
+msgstr "date de publication"
+
+#: activities/models.py:67 communication/models.py:162 elections/models.py:34
+#: sports/models.py:44
+msgid "slug"
+msgstr "slug"
+
+#: activities/models.py:68 communication/models.py:208 elections/models.py:35
+#: management/models.py:260
+msgid "start date"
+msgstr "date de début"
+
+#: activities/models.py:69 communication/models.py:163
+msgid "summary"
+msgstr "résumé"
+
+#: activities/models.py:70 communication/models.py:111
+#: communication/models.py:164 communication/models.py:209
+#: elections/models.py:36 management/models.py:303 management/models.py:343
+#: sports/models.py:195
+msgid "title"
+msgstr "titre"
+
+#: activities/models.py:71
+msgid "website"
+msgstr "site web"
+
+#: activities/models.py:73
+#, fuzzy
+#| msgid "admin files"
+msgid "attached admin files"
+msgstr "fichiers privés joints"
+
+#: activities/models.py:74 communication/models.py:48
+#, fuzzy
+#| msgid "public files"
+msgid "attached public files"
+msgstr "fichiers publics joints"
+
+#: activities/models.py:75
+#, fuzzy
+#| msgid "public images"
+msgid "attached public images"
+msgstr "images publiques jointes"
+
+#: activities/models.py:77 management/models.py:131 management/models.py:186
+#: sports/models.py:93 sports/models.py:144
+msgid "location"
+msgstr "lieu"
+
+#: activities/models.py:80 activities/models.py:150
+msgid "activity"
+msgstr "activité"
+
+#: activities/models.py:81
+msgid "activities"
+msgstr "activités"
+
+#: activities/models.py:87 communication/models.py:219 elections/models.py:45
+#: management/models.py:272
+msgid "Start date cannot be after end date."
+msgstr "La date de début ne peut pas être après la date de fin."
+
+#: activities/models.py:136 activities/models.py:193
+msgid "default price"
+msgstr "prix par défaut"
+
+#: activities/models.py:138 activities/models.py:195 elections/models.py:31
+#: management/models.py:220 management/models.py:302 management/models.py:339
+#: sports/models.py:39 sports/models.py:85 sports/models.py:194
+#: treasury/models.py:57 treasury/models.py:153
+#, fuzzy
+#| msgid "election"
+msgid "description"
+msgstr "description"
+
+#: activities/models.py:139
+msgid "is mandatory?"
+msgstr "obligatoire ?"
+
+#: activities/models.py:141 communication/models.py:207 elections/models.py:33
+msgid "is published?"
+msgstr "publié ?"
+
+#: activities/models.py:142 activities/models.py:196
+msgid "max bought items"
+msgstr "nombre maximal d'éléments achetés"
+
+#: activities/models.py:144 activities/models.py:198
+#, fuzzy
+#| msgid "membership type"
+msgid "member price"
+msgstr "prix membres"
+
+#: activities/models.py:147 activities/models.py:201 management/models.py:128
+#: management/models.py:221 sports/models.py:43 sports/models.py:86
+#: treasury/models.py:59 treasury/models.py:113 treasury/models.py:155
+msgid "name"
+msgstr "nom"
+
+#: activities/models.py:152
+#, fuzzy
+#| msgid "parameter"
+msgid "parent parameter"
+msgstr "paramètre parent"
+
+#: activities/models.py:155 activities/models.py:203
+msgid "parameter"
+msgstr "paramètre"
+
+#: activities/models.py:156
+msgid "parameters"
+msgstr "paramètres"
+
+#: activities/models.py:161
+msgid "Parent parameter or activity has to be set."
+msgstr "Un paramètre parent ou une activité doit être défini."
+
+#: activities/models.py:206 activities/models.py:255
+msgid "item"
+msgstr "élément"
+
+#: activities/models.py:207
+msgid "items"
+msgstr "éléments"
+
+#: activities/models.py:247 management/models.py:389
+#, fuzzy
+#| msgid "Missing bank of the cheque."
+msgid "bank of the cheque"
+msgstr "banque du chèque."
+
+#: activities/models.py:250 management/models.py:393
+msgid "payment mean"
+msgstr "moyen de paiement"
+
+#: activities/models.py:251 treasury/models.py:61
+#, fuzzy
+#| msgid "Registered users"
+msgid "unregistered user"
+msgstr "utilisateur non enregistré"
+
+#: activities/models.py:254 management/models.py:400 treasury/models.py:116
+#: treasury/models.py:158
+msgid "cash register"
+msgstr "caisse"
+
+#: activities/models.py:257 treasury/models.py:65
+#, fuzzy
+#| msgid "Registered users"
+msgid "registered user"
+msgstr "utilisateurs enregistrés"
+
+#: activities/models.py:260
+msgid "participant"
+msgstr "participant"
+
+#: activities/models.py:261 sports/models.py:50
+msgid "participants"
+msgstr "participants"
+
+#: activities/models.py:266 treasury/models.py:82
+msgid ""
+"One of unregistered user or registered "
+"user                                     should be set."
+msgstr "Un utilisateur enregistré ou non enregistré devrait être défini."
+
+#: activities/models.py:269
+msgid ""
+"Maximum one of unregistered user or                                     "
+"registered user can be set."
+msgstr "Un utilisateur soit enregistré, soit non enregistré peut être défini."
+
+#: activities/models.py:272 management/models.py:416
+msgid "Missing bank of the cheque."
+msgstr "La banque du chèque n'est pas définie."
+
+#: activities/models.py:279
+msgid ""
+"Unregistered users cannot buy parameters                                     "
+"reserved to members or participate in                                     "
+"activity reserved to members."
+msgstr ""
+"Un utilisateur non enregistré ne peut pas acheter un paramètre ou participer "
+"à une activité réservés aux membres."
+
+#: activities/models.py:284
+msgid ""
+"Maximum number of bought items is "
+"reached                                     for this item."
+msgstr "Le nombre maximal d'achats est atteint pour cet élément."
+
+#: activities/models.py:288
+msgid ""
+"Maximum number of bought items is "
+"reached                                     for this parameter."
+msgstr "Le nombre maximal d'achats est atteint pour ce paramètre."
+
+#: activities/views.py:53
+msgid "Activity does not exist."
+msgstr "L'activité n'existe pas."
+
+#: communication/admin.py:25
+#, python-format
+msgid "Failed to send weekmails titled: \"%s\""
+msgstr "Échec dans l'envoi des weekmails intitulés : \"%s\""
+
+#: communication/admin.py:28
+msgid "All selected weekmails have been sent."
+msgstr "Tous les weekmails sélectionnés ont été envoyés."
+
+#: communication/admin.py:39
+msgid "Send selected weekmails"
+msgstr "Envoyer les weekmails sélectionnés"
+
+#: communication/admin.py:40
+msgid "Display selected weekmails"
+msgstr "Afficher les weekmails sélectionnés"
+
+#: communication/models.py:39
+msgid "conclusion"
+msgstr "conclusion"
+
+#: communication/models.py:41
+#, fuzzy
+#| msgid "information"
+msgid "introduction"
+msgstr "introduction"
+
+#: communication/models.py:43
+msgid "sent date"
+msgstr "date d'envoi"
+
+#: communication/models.py:45
+msgid "subject"
+msgstr "objet"
+
+#: communication/models.py:51 communication/models.py:113
+msgid "weekmail"
+msgstr "weekmail"
+
+#: communication/models.py:52
+msgid "weekmails"
+msgstr "weekmails"
+
+#: communication/models.py:72
+#, python-format
+msgid "[Weekmail] %s"
+msgstr "[Weekmail] %s"
+
+#: communication/models.py:110
+msgid "index"
+msgstr "index"
+
+#: communication/models.py:116
+msgid "paragraph"
+msgstr "paragraphe"
+
+#: communication/models.py:117
+msgid "paragraphs"
+msgstr "paragraphes"
+
+#: communication/models.py:166 sports/models.py:91
+#, fuzzy
+#| msgid "protected files"
+msgid "attached protected files"
+msgstr "fichiers protégés joints"
+
+#: communication/models.py:167
+#, fuzzy
+#| msgid "protected images"
+msgid "attached protected images"
+msgstr "images protégées jointes"
+
+#: communication/models.py:169
+msgid "author"
+msgstr "auteur"
+
+#: communication/models.py:172
+msgid "article"
+msgstr "article"
+
+#: communication/models.py:173
+msgid "articles"
+msgstr "articles"
+
+#: communication/models.py:206
+msgid "is important?"
+msgstr "important ?"
+
+#: communication/models.py:212
+msgid "information"
+msgstr "information"
+
+#: communication/models.py:213
+msgid "informations"
+msgstr "informations"
+
+#: communication/models.py:221
+msgid "At least title or content should be set."
+msgstr "Au moins un titre ou du contenu devrait être défini."
+
+#: communication/views.py:110
+msgid "Failed to send                                     mail."
+msgstr "Échec de l'envoi du mail."
+
+#: communication/views.py:119
+msgid "Failed to send                                         mail."
+msgstr "Échec de l'envoi du mail."
+
+#: communication/views.py:185
+msgid "Article does not exist."
+msgstr "L'article n'existe pas."
+
+#: communication/views.py:211
+msgid "Weekmail does not exist."
+msgstr "Le weekmail n'existe pas."
+
+#: elections/models.py:39 elections/models.py:77
+msgid "election"
+msgstr "élection"
+
+#: elections/models.py:40
+msgid "elections"
+msgstr "élections"
+
+#: elections/models.py:74
+msgid "number of elected candidates"
+msgstr "nombre de candidats élus"
+
+#: elections/models.py:78 management/models.py:306 users/models.py:155
+msgid "position"
+msgstr "poste"
+
+#: elections/models.py:80
+msgid "current staff keeping position"
+msgstr "staff actuel qui garde son poste"
+
+#: elections/models.py:83 elections/models.py:108
+msgid "vacant position"
+msgstr "poste vacant"
+
+#: elections/models.py:84
+msgid "vacant positions"
+msgstr "postes vacants"
+
+#: elections/models.py:104
+msgid "speech"
+msgstr "discours de candidature"
+
+#: elections/models.py:106
+#, fuzzy
+#| msgid "candidature"
+msgid "candidate"
+msgstr "candidat"
+
+#: elections/models.py:112 elections/models.py:141
+msgid "candidature"
+msgstr "candidature"
+
+#: elections/models.py:113
+msgid "candidatures"
+msgstr "candidatures"
+
+#: elections/models.py:142
+#, fuzzy
+#| msgid "vote"
+msgid "voter"
+msgstr "électeur"
+
+#: elections/models.py:145
+msgid "vote"
+msgstr "vote"
+
+#: elections/models.py:146
+msgid "votes"
+msgstr "votes"
+
+#: elections/models.py:150
+msgid ""
+"User currently not a member. Not allowed "
+"to                                     vote."
+msgstr "L'utilisateur n'est pas membre. Interdit de vote."
+
+#: elections/models.py:155
+msgid "The user already voted for this position."
+msgstr "L'utilisateur a déjà voté pour ce poste."
+
+#: management/models.py:59
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: management/models.py:60
+msgid "Monday"
+msgstr "Lundi"
+
+#: management/models.py:61
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: management/models.py:62
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: management/models.py:63
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: management/models.py:64
+msgid "Friday"
+msgstr "Vendredi"
+
+#: management/models.py:65
+msgid "Saturday"
+msgstr "Samedi"
+
+#: management/models.py:85
+msgid "Cash"
+msgstr "Espèces"
+
+#: management/models.py:86
+msgid "Cheque"
+msgstr "Chèque"
+
+#: management/models.py:122
+msgid "address"
+msgstr "adresse"
+
+#: management/models.py:123
+msgid "city"
+msgstr "ville"
+
+#: management/models.py:124
+msgid "latitude"
+msgstr "latitude"
+
+#: management/models.py:126
+msgid "longitude"
+msgstr "longitude"
+
+#: management/models.py:132
+msgid "locations"
+msgstr "lieux"
+
+#: management/models.py:139
+msgid ""
+"Latitude and longitude have to be both                                     "
+"either omitted or set."
+msgstr ""
+"La latitude et la longitude doivent être tout deux soit omis soit défini."
+
+#: management/models.py:142
+msgid "Address cannot be set without a city."
+msgstr "L'adresse ne peut pas être définie sans ville."
+
+#: management/models.py:145
+msgid ""
+"Missing address and city or latitude and                                     "
+"longitude"
+msgstr "Il manque une adresse et une ville ou une latitude et une longitude."
+
+#: management/models.py:175 sports/models.py:84 sports/models.py:134
+msgid "date"
+msgstr "date"
+
+#: management/models.py:176 sports/models.py:135
+msgid "end time"
+msgstr "heure de fin"
+
+#: management/models.py:177 sports/models.py:136
+msgid "start time"
+msgstr "heure de début"
+
+#: management/models.py:178 sports/models.py:137
+#, fuzzy
+#| msgid "weekmail"
+msgid "weekday"
+msgstr "jour de la semaine"
+
+#: management/models.py:184
+#, fuzzy
+#| msgid "activities"
+msgid "related activities"
+msgstr "activités associées"
+
+#: management/models.py:189
+msgid "permanence"
+msgstr "permanence"
+
+#: management/models.py:190
+msgid "permanences"
+msgstr "permanences"
+
+#: management/models.py:194 sports/models.py:158
+msgid "Weekday and date cannot be both set."
+msgstr ""
+"Le jour de la semaine et la date ne peuvent pas être définis en même temps."
+
+#: management/models.py:196 sports/models.py:160
+msgid "Weekday or date has to be set."
+msgstr "Le jour de la semaine ou la date doivent être définis."
+
+#: management/models.py:198 sports/models.py:162
+msgid "Start time cannot be after end time."
+msgstr "L'heure de début ne peut pas être après l'heure de fin."
+
+#: management/models.py:222 management/models.py:258
+msgid "quantity"
+msgstr "quantité"
+
+#: management/models.py:225 management/models.py:263
+msgid "equipment"
+msgstr "matériel"
+
+#: management/models.py:226
+msgid "equipments"
+msgstr "matériels"
+
+#: management/models.py:256
+#, fuzzy
+#| msgid "position"
+msgid "deposit"
+msgstr "caution"
+
+#: management/models.py:259
+msgid "is returned?"
+msgstr "rendu ?"
+
+#: management/models.py:262
+msgid "borrower"
+msgstr "emprunteur"
+
+#: management/models.py:266
+msgid "lending"
+msgstr "prêt"
+
+#: management/models.py:267
+msgid "lendings"
+msgstr "prêts"
+
+#: management/models.py:281
+msgid ""
+"Lending impossible, not enough equipment                                     "
+"in stock."
+msgstr "Prêt impossible, il n'y a plus assez de matériel en stock."
+
+#: management/models.py:307
+msgid "positions"
+msgstr "postes"
+
+#: management/models.py:340
+#, fuzzy
+#| msgid "activities"
+msgid "is active?"
+msgstr "actif ?"
+
+#: management/models.py:341
+msgid "semester fee"
+msgstr "prix au semestre"
+
+#: management/models.py:344
+msgid "year fee"
+msgstr "prix à l'année"
+
+#: management/models.py:348 management/models.py:398
+msgid "membership type"
+msgstr "type de cotisation"
+
+#: management/models.py:349
+msgid "membership types"
+msgstr "types de cotisation"
+
+#: management/models.py:386
+msgid "certificate copy"
+msgstr "copie du certificat médical"
+
+#: management/models.py:388
+msgid "certificate date"
+msgstr "date du certificat médical"
+
+#: management/models.py:391
+msgid "expiration date"
+msgstr "date d'expiration"
+
+#: management/models.py:392
+#, fuzzy
+#| msgid "membership type"
+msgid "membership copy"
+msgstr "copie de la fiche d'adhésion"
+
+#: management/models.py:395
+#, fuzzy
+#| msgid "Members"
+msgid "member"
+msgstr "membre"
+
+#: management/models.py:403
+msgid "membership"
+msgstr "cotisation"
+
+#: management/models.py:404
+msgid "memberships"
+msgstr "cotisations"
+
+#: management/models.py:412
+msgid ""
+"Expiration date cannot be after the "
+"creation                                    date."
+msgstr "La date d'expiration ne peut pas être après la date de création."
+
+#: management/models.py:419
+msgid ""
+"Certificate will expire before the                                     "
+"membership."
+msgstr "Le certificat médical va expirer avant la fin de la cotisation."
+
+#: management/models.py:452 management/models.py:484 management/models.py:522
+#: management/models.py:563 management/models.py:601 management/models.py:633
+msgid "file"
+msgstr "fichier"
+
+#: management/models.py:454 management/models.py:486 management/models.py:524
+#: management/models.py:565 management/models.py:603 management/models.py:635
+msgid "content type"
+msgstr "type d'objet"
+
+#: management/models.py:455 management/models.py:487 management/models.py:525
+#: management/models.py:566 management/models.py:604 management/models.py:636
+msgid "object id"
+msgstr "id de l'objet"
+
+#: management/models.py:456 management/models.py:488 management/models.py:526
+#: management/models.py:567 management/models.py:605 management/models.py:637
+msgid "content object"
+msgstr "objet"
+
+#: management/models.py:459
+msgid "public file"
+msgstr "fichier public"
+
+#: management/models.py:460
+msgid "public files"
+msgstr "fichiers publics"
+
+#: management/models.py:491
+msgid "public image"
+msgstr "image publique"
+
+#: management/models.py:492
+msgid "public images"
+msgstr "images publiques"
+
+#: management/models.py:529
+msgid "protected file"
+msgstr "fichier protégé"
+
+#: management/models.py:530
+msgid "protected files"
+msgstr "fichiers protégés"
+
+#: management/models.py:570
+msgid "protected image"
+msgstr "image protégée"
+
+#: management/models.py:571
+msgid "protected images"
+msgstr "images protégées"
+
+#: management/models.py:608
+msgid "admin file"
+msgstr "fichier privé"
+
+#: management/models.py:609
+msgid "admin files"
+msgstr "fichiers privés"
+
+#: management/models.py:640
+msgid "admin image"
+msgstr "image privée"
+
+#: management/models.py:641
+msgid "admin images"
+msgstr "images privées"
+
+#: sports/models.py:40
+msgid "is open?"
+msgstr "ouvert ?"
+
+#: sports/models.py:41
+msgid "mailing list"
+msgstr "liste de diffusion"
+
+#: sports/models.py:47
+#, fuzzy
+#| msgid "Competition"
+msgid "competitors"
+msgstr "compétiteurs"
+
+#: sports/models.py:48
+#, fuzzy
+#| msgid "Managers"
+msgid "managers"
+msgstr "responsables"
+
+#: sports/models.py:53 sports/models.py:97 sports/models.py:149
+msgid "sport"
+msgstr "sport"
+
+#: sports/models.py:54
+msgid "sports"
+msgstr "sports"
+
+#: sports/models.py:87
+msgid "opponent"
+msgstr "adversaire"
+
+#: sports/models.py:88
+msgid "result"
+msgstr "résultat"
+
+#: sports/models.py:95
+#, fuzzy
+#| msgid "sport"
+msgid "report"
+msgstr "compte-rendu"
+
+#: sports/models.py:100
+msgid "match"
+msgstr "match"
+
+#: sports/models.py:101
+msgid "matches"
+msgstr "matches"
+
+#: sports/models.py:146
+#, fuzzy
+#| msgid "Managers"
+msgid "manager"
+msgstr "responsable"
+
+#: sports/models.py:152
+msgid "session"
+msgstr "créneau"
+
+#: sports/models.py:153
+msgid "sessions"
+msgstr "créneaux"
+
+#: sports/models.py:164
+#, python-format
+msgid ""
+"%s does not manage the sport. (S)he "
+"can't                                     manage sessions of this sport."
+msgstr ""
+"%s n'est pas responsable du sport. Il/elle ne peut pas gérer de créneaux "
+"dans ce sport."
+
+#: sports/models.py:193
+msgid "cancellation date"
+msgstr "date d'annulation"
+
+#: sports/models.py:198 sports/models.py:201
+msgid "cancelled session"
+msgstr "créneau annulé"
+
+#: sports/models.py:202
+msgid "cancelled sessions"
+msgstr "créneaux annulés"
+
+#: sports/models.py:209
+msgid "Weekdays are not matching."
+msgstr "Les jours de la semaine ne correspondent pas."
+
+#: sports/models.py:212
+msgid "Dates are not matching."
+msgstr "Les dates ne correspondent pas."
+
+#: treasury/models.py:55 treasury/models.py:151
+msgid "amount"
+msgstr "montant"
+
+#: treasury/models.py:60
+msgid "processed date"
+msgstr "date de traitement"
+
+#: treasury/models.py:63
+msgid "attached private files"
+msgstr "fichiers privés joints"
+
+#: treasury/models.py:67
+#, fuzzy
+#| msgid "activity"
+msgid "related activity"
+msgstr "activité associée"
+
+#: treasury/models.py:70
+msgid "financial operation"
+msgstr "subvention et facture"
+
+#: treasury/models.py:71
+msgid "financial operations"
+msgstr "subventions et factures"
+
+#: treasury/models.py:85
+msgid ""
+"Either unregistered user or registered "
+"user                                     can be set."
+msgstr ""
+"Uniquement un utilisateur enregistré ou non enregistré peut être défini."
+
+#: treasury/models.py:117
+msgid "cash registers"
+msgstr "caisses"
+
+#: treasury/models.py:161
+msgid "treasury operation"
+msgstr "opération de trésorerie"
+
+#: treasury/models.py:162
+msgid "treasury operations"
+msgstr "opérations de trésorerie"
+
+#: users/admin.py:25
+msgid "Competition"
+msgstr "Compétition"
+
+#: users/admin.py:29
+msgid "Miscellaneous"
+msgstr "Divers"
+
+#: users/admin.py:33
+msgid "Privacy Scopes"
+msgstr "Vie privée"
+
+#: users/admin.py:111
+msgid "Print member cards for the selected users."
+msgstr "Imprimer les cartes de membre pour les utilisateurs sélectionnés."
+
+#: users/models.py:43
+msgid "Registered users"
+msgstr "Utilisateurs enregistrés"
+
+#: users/models.py:44
+msgid "Members"
+msgstr "Membres"
+
+#: users/models.py:45
+msgid "Managers"
+msgstr "Responsables"
+
+#: users/models.py:46
+msgid "Staff"
+msgstr "Staff"
+
+#: users/models.py:130 users/models.py:158
+msgid "user"
+msgstr "utilisateur"
+
+#: users/models.py:132
+msgid "birthdate"
+msgstr "date de naissance"
+
+#: users/models.py:133
+#, fuzzy
+#| msgid "Competition"
+msgid "competition license"
+msgstr "licence de compétition"
+
+#: users/models.py:134
+msgid "expiration date of competition license"
+msgstr "date d'expiration de la licence de compétition"
+
+#: users/models.py:135
+msgid "does authorize diffusion?"
+msgstr "autorisation de diffusion ?"
+
+#: users/models.py:136
+msgid "gender"
+msgstr "genre"
+
+#: users/models.py:137
+msgid "global scope"
+msgstr "visibilité du profil"
+
+#: users/models.py:140
+msgid "identity photo"
+msgstr "photo d'identité"
+
+#: users/models.py:141
+msgid "mail scope"
+msgstr "visibilité du mail"
+
+#: users/models.py:144
+msgid "nickname"
+msgstr "surnom"
+
+#: users/models.py:148
+msgid "phone"
+msgstr "téléphone"
+
+#: users/models.py:150
+msgid "phone scope"
+msgstr "visibilité du numéro de téléphone"
+
+#: users/models.py:152
+msgid "size"
+msgstr "taille"
+
+#: users/models.py:159
+msgid "users"
+msgstr "utilisateurs"
+
+#: users/templates/users/create.html:9
+msgid "Django site admin"
+msgstr "Site d'administration du BDS"
+
+#: users/templates/users/create.html:15
+msgid "Home"
+msgstr "Accueil"
+
+#: users/templates/users/create.html:16 users/templates/users/create.html:17
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: users/views.py:57
+msgid "Welcome to BDS !"
+msgstr "Bienvenue au BDS !"
+
+#: users/views.py:63
+msgid "Failed to send                                     credentials by mail."
+msgstr "Échec de l'envoi des identifiants par mail."
