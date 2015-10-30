@@ -109,8 +109,3 @@ class CustomUserAdmin(admin.ModelAdmin):
 
 
     print_cards.short_description = _('Print member cards for the selected users.')
-
-class CustomUserInline(admin.StackedInline):
-    model = CustomUser
-    can_delete = False
-    exclude = ('position',)
