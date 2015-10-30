@@ -6,6 +6,18 @@ from management.admin import (AdminFileInline, ProtectedFileInline,
 
 @admin.register(Activity)
 class ActivityAdmin(admin.ModelAdmin):
+    list_display = ('title', 'publication_date', 'start_date', 'end_date',
+            'is_big_activity', 'is_frontpage', 'is_member_only', 'summary',
+            'creation_date', 'modification_date',)
+    search_fields = ('title', 'summary')
+    list_filter = ('publication_date', 'creation_date', 'modification_date',
+            'start_date', 'end_date', 'is_big_activity', 'is_frontpage',
+            'is_member_only',)
+    date_hierarchy = 'start_date'
+    ordering = ('-start_date',)
+    fields = ('title', 'slug', 'summary', 'website', 'cover', 'location',
+            'is_big_activity', 'is_frontpage', 'is_member_only', 'start_date',
+            'end_date', 'publication_date', 'content')
     prepopulated_fields = {'slug': ('title',)}
     inlines = [AdminFileInline, ProtectedFileInline, ProtectedImageInline,]
 
