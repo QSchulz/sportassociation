@@ -27,7 +27,7 @@ Add user | {{ site_title|default:_('Django site admin') }}
         {% bootstrap_form form layout='table' %}
         {% buttons %}
             <button type="submit" class="btn btn-primary">
-                {% bootstrap_icon "ok" %} Submit
+                {% bootstrap_icon "ok" %} {% trans "Submit" %}
             </button>
         {% endbuttons %}
     </form>

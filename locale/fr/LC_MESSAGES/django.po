@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-29 11:27+0100\n"
+"POT-Creation-Date: 2015-10-30 16:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr "photo de couverture"
 
 #: activities/models.py:60 activities/models.py:135 activities/models.py:192
 #: activities/models.py:248 communication/models.py:40
-#: communication/models.py:158 elections/models.py:139
-#: management/models.py:390 management/models.py:451 management/models.py:483
-#: management/models.py:521 management/models.py:562 management/models.py:600
-#: management/models.py:632 sports/models.py:38 treasury/models.py:56
-#: treasury/models.py:111 treasury/models.py:152
+#: communication/models.py:108 communication/models.py:158
+#: elections/models.py:139 management/models.py:390 management/models.py:451
+#: management/models.py:483 management/models.py:521 management/models.py:562
+#: management/models.py:600 management/models.py:632 sports/models.py:38
+#: treasury/models.py:56 treasury/models.py:111 treasury/models.py:152
 msgid "creation date"
 msgstr "date de création"
 
@@ -43,8 +43,6 @@ msgid "end date"
 msgstr "date de fin"
 
 #: activities/models.py:62
-#, fuzzy
-#| msgid "activity"
 msgid "is big activity?"
 msgstr "grande activité ?"
 
@@ -57,15 +55,14 @@ msgid "is reserved to members?"
 msgstr "reservé aux membres ?"
 
 #: activities/models.py:65 activities/models.py:146 activities/models.py:200
-#: activities/models.py:249 communication/models.py:109
-#: communication/models.py:160 sports/models.py:42 treasury/models.py:58
-#: treasury/models.py:112 treasury/models.py:154 users/models.py:143
+#: activities/models.py:249 communication/models.py:42
+#: communication/models.py:109 communication/models.py:160 sports/models.py:42
+#: treasury/models.py:58 treasury/models.py:112 treasury/models.py:154
+#: users/models.py:143
 msgid "modification date"
 msgstr "date de modification"
 
 #: activities/models.py:66 communication/models.py:161
-#, fuzzy
-#| msgid "public image"
 msgid "publication date"
 msgstr "date de publication"
 
@@ -95,20 +92,14 @@ msgid "website"
 msgstr "site web"
 
 #: activities/models.py:73
-#, fuzzy
-#| msgid "admin files"
 msgid "attached admin files"
 msgstr "fichiers privés joints"
 
 #: activities/models.py:74 communication/models.py:48
-#, fuzzy
-#| msgid "public files"
 msgid "attached public files"
 msgstr "fichiers publics joints"
 
 #: activities/models.py:75
-#, fuzzy
-#| msgid "public images"
 msgid "attached public images"
 msgstr "images publiques jointes"
 
@@ -138,8 +129,6 @@ msgstr "prix par défaut"
 #: management/models.py:220 management/models.py:302 management/models.py:339
 #: sports/models.py:39 sports/models.py:85 sports/models.py:194
 #: treasury/models.py:57 treasury/models.py:153
-#, fuzzy
-#| msgid "election"
 msgid "description"
 msgstr "description"
 
@@ -156,8 +145,6 @@ msgid "max bought items"
 msgstr "nombre maximal d'éléments achetés"
 
 #: activities/models.py:144 activities/models.py:198
-#, fuzzy
-#| msgid "membership type"
 msgid "member price"
 msgstr "prix membres"
 
@@ -168,8 +155,6 @@ msgid "name"
 msgstr "nom"
 
 #: activities/models.py:152
-#, fuzzy
-#| msgid "parameter"
 msgid "parent parameter"
 msgstr "paramètre parent"
 
@@ -194,18 +179,14 @@ msgid "items"
 msgstr "éléments"
 
 #: activities/models.py:247 management/models.py:389
-#, fuzzy
-#| msgid "Missing bank of the cheque."
 msgid "bank of the cheque"
-msgstr "banque du chèque."
+msgstr "banque du chèque"
 
 #: activities/models.py:250 management/models.py:393
 msgid "payment mean"
 msgstr "moyen de paiement"
 
 #: activities/models.py:251 treasury/models.py:61
-#, fuzzy
-#| msgid "Registered users"
 msgid "unregistered user"
 msgstr "utilisateur non enregistré"
 
@@ -215,8 +196,6 @@ msgid "cash register"
 msgstr "caisse"
 
 #: activities/models.py:257 treasury/models.py:65
-#, fuzzy
-#| msgid "Registered users"
 msgid "registered user"
 msgstr "utilisateurs enregistrés"
 
@@ -269,20 +248,20 @@ msgstr "Le nombre maximal d'achats est atteint pour ce paramètre."
 msgid "Activity does not exist."
 msgstr "L'activité n'existe pas."
 
-#: communication/admin.py:25
+#: communication/admin.py:32
 #, python-format
 msgid "Failed to send weekmails titled: \"%s\""
 msgstr "Échec dans l'envoi des weekmails intitulés : \"%s\""
 
-#: communication/admin.py:28
+#: communication/admin.py:35
 msgid "All selected weekmails have been sent."
 msgstr "Tous les weekmails sélectionnés ont été envoyés."
 
-#: communication/admin.py:39
+#: communication/admin.py:46
 msgid "Send selected weekmails"
 msgstr "Envoyer les weekmails sélectionnés"
 
-#: communication/admin.py:40
+#: communication/admin.py:47
 msgid "Display selected weekmails"
 msgstr "Afficher les weekmails sélectionnés"
 
@@ -291,8 +270,6 @@ msgid "conclusion"
 msgstr "conclusion"
 
 #: communication/models.py:41
-#, fuzzy
-#| msgid "information"
 msgid "introduction"
 msgstr "introduction"
 
@@ -330,14 +307,10 @@ msgid "paragraphs"
 msgstr "paragraphes"
 
 #: communication/models.py:166 sports/models.py:91
-#, fuzzy
-#| msgid "protected files"
 msgid "attached protected files"
 msgstr "fichiers protégés joints"
 
 #: communication/models.py:167
-#, fuzzy
-#| msgid "protected images"
 msgid "attached protected images"
 msgstr "images protégées jointes"
 
@@ -418,8 +391,6 @@ msgid "speech"
 msgstr "discours de candidature"
 
 #: elections/models.py:106
-#, fuzzy
-#| msgid "candidature"
 msgid "candidate"
 msgstr "candidat"
 
@@ -432,8 +403,6 @@ msgid "candidatures"
 msgstr "candidatures"
 
 #: elections/models.py:142
-#, fuzzy
-#| msgid "vote"
 msgid "voter"
 msgstr "électeur"
 
@@ -541,14 +510,10 @@ msgid "start time"
 msgstr "heure de début"
 
 #: management/models.py:178 sports/models.py:137
-#, fuzzy
-#| msgid "weekmail"
 msgid "weekday"
 msgstr "jour de la semaine"
 
 #: management/models.py:184
-#, fuzzy
-#| msgid "activities"
 msgid "related activities"
 msgstr "activités associées"
 
@@ -586,8 +551,6 @@ msgid "equipments"
 msgstr "matériels"
 
 #: management/models.py:256
-#, fuzzy
-#| msgid "position"
 msgid "deposit"
 msgstr "caution"
 
@@ -618,8 +581,6 @@ msgid "positions"
 msgstr "postes"
 
 #: management/models.py:340
-#, fuzzy
-#| msgid "activities"
 msgid "is active?"
 msgstr "actif ?"
 
@@ -652,14 +613,10 @@ msgid "expiration date"
 msgstr "date d'expiration"
 
 #: management/models.py:392
-#, fuzzy
-#| msgid "membership type"
 msgid "membership copy"
 msgstr "copie de la fiche d'adhésion"
 
 #: management/models.py:395
-#, fuzzy
-#| msgid "Members"
 msgid "member"
 msgstr "membre"
 
@@ -697,11 +654,6 @@ msgstr "type d'objet"
 #: management/models.py:566 management/models.py:604 management/models.py:636
 msgid "object id"
 msgstr "id de l'objet"
-
-#: management/models.py:456 management/models.py:488 management/models.py:526
-#: management/models.py:567 management/models.py:605 management/models.py:637
-msgid "content object"
-msgstr "objet"
 
 #: management/models.py:459
 msgid "public file"
@@ -760,14 +712,10 @@ msgid "mailing list"
 msgstr "liste de diffusion"
 
 #: sports/models.py:47
-#, fuzzy
-#| msgid "Competition"
 msgid "competitors"
 msgstr "compétiteurs"
 
 #: sports/models.py:48
-#, fuzzy
-#| msgid "Managers"
 msgid "managers"
 msgstr "responsables"
 
@@ -788,8 +736,6 @@ msgid "result"
 msgstr "résultat"
 
 #: sports/models.py:95
-#, fuzzy
-#| msgid "sport"
 msgid "report"
 msgstr "compte-rendu"
 
@@ -802,8 +748,6 @@ msgid "matches"
 msgstr "matches"
 
 #: sports/models.py:146
-#, fuzzy
-#| msgid "Managers"
 msgid "manager"
 msgstr "responsable"
 
@@ -857,8 +801,6 @@ msgid "attached private files"
 msgstr "fichiers privés joints"
 
 #: treasury/models.py:67
-#, fuzzy
-#| msgid "activity"
 msgid "related activity"
 msgstr "activité associée"
 
@@ -905,6 +847,22 @@ msgstr "Vie privée"
 msgid "Print member cards for the selected users."
 msgstr "Imprimer les cartes de membre pour les utilisateurs sélectionnés."
 
+#: users/forms.py:6
+msgid "Email"
+msgstr "Email"
+
+#: users/forms.py:7
+msgid "First name"
+msgstr "Prénom"
+
+#: users/forms.py:8
+msgid "Last name"
+msgstr "Nom"
+
+#: users/forms.py:9
+msgid "Identity photo"
+msgstr "Photo d'identité"
+
 #: users/models.py:43
 msgid "Registered users"
 msgstr "Utilisateurs enregistrés"
@@ -930,8 +888,6 @@ msgid "birthdate"
 msgstr "date de naissance"
 
 #: users/models.py:133
-#, fuzzy
-#| msgid "Competition"
 msgid "competition license"
 msgstr "licence de compétition"
 
@@ -991,6 +947,10 @@ msgstr "Accueil"
 msgid "Users"
 msgstr "Utilisateurs"
 
+#: users/templates/users/create.html:30
+msgid "Submit"
+msgstr "Enregistrer"
+
 #: users/views.py:57
 msgid "Welcome to BDS !"
 msgstr "Bienvenue au BDS !"
@@ -998,3 +958,6 @@ msgstr "Bienvenue au BDS !"
 #: users/views.py:63
 msgid "Failed to send                                     credentials by mail."
 msgstr "Échec de l'envoi des identifiants par mail."
+
+#~ msgid "content object"
+#~ msgstr "objet"
