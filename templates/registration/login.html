@@ -3,38 +3,45 @@
 {% block title %}Connexion{% endblock %}
 
 {% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        <div class="center">
+            {% if form.errors %}
+                <p>Échec de la connexion. Votre nom d'utilisateur et votre mot de passe ne correspondent pas.
+                Réessayez.</p>
+            {% endif %}
 
-{% if form.errors %}
-<p>Échec de la connexion. Votre nom d'utilisateur et votre mot de passe ne correspondent pas.
-  Réessayez.</p>
-{% endif %}
+            {% if next %}
+                {% if user.is_authenticated %}
+                <p>Vous n'avez pas les autorisations nécessaires pour accéder à cette page,
+                veuillez vous connecter avec un compte avec ces autorisations.</p>
+                {% else %}
+                <p>Veuillez vous connecter pour accéder à cette page.</p>
+                {% endif %}
+            {% endif %}
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Vous n'avez pas les autorisations nécessaires pour accéder à cette page,
-    veuillez vous connecter avec un compte avec ces autorisations.</p>
-    {% else %}
-    <p>Veuillez vous connecter pour accéder à cette page.</p>
-    {% endif %}
-{% endif %}
+            <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+              <table class="centerDiv">
+                <tr>
+                  <td>{{ form.username.label_tag }}</td>
+                  <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                  <td>{{ form.password.label_tag }}</td>
+                  <td>{{ form.password }}</td>
+                </tr>
+              </table>
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-  <table>
-    <tr>
-      <td>{{ form.username.label_tag }}</td>
-      <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.password.label_tag }}</td>
-      <td>{{ form.password }}</td>
-    </tr>
-  </table>
+              <input type="submit" value="Se Connecter" />
+              <input type="hidden" name="next" value="{{ next }}" />
+            </form>
 
-  <input type="submit" value="Se Connecter" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-<p><a href="{% url 'password_reset' %}">Mot de passe oublié ?</a></p>
+            <p><a href="{% url 'password_reset' %}">Mot de passe oublié ?</a></p>
+        </div>
+      </div>
+    </div>
+</div>
 
 {% endblock %}
